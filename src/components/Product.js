@@ -2,23 +2,20 @@ import React from 'react';
 import ReactStars from 'react-rating-stars-component';
 import './Product.css';
 
-function Product() {
+function Product({ title, image, price, rating }) {
   return (
     <div className="product">
       <div className="product__info">
-        <p>The lean startup</p>
+        <p>{title}</p>
         <p className="product__price">
           <small>$</small>
-          <strong>19.99</strong>
+          <strong>{price}</strong>
         </p>
         <div className="product__rating">
-          <ReactStars count={5} size={24} />
+          <ReactStars count={rating} size={24} />
         </div>
       </div>
-      <img
-        src="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-        alt=""
-      />
+      <img src={image} alt="" />
       <button>Add to Basket</button>
     </div>
   );
