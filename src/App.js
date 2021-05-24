@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
+import Checkout from './pages/Checkout';
 import './App.css';
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
         <Header />
         <Switch>
           <Route path="/checkout">
-            <h1>I AM A CHECKOUT, SMASTH THE LIKE BUTTON</h1>
+            <Checkout />
           </Route>
           <Route path="/">
             <Home />
