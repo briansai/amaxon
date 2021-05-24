@@ -1,5 +1,6 @@
 import React from 'react';
 import Product from '../components/Product';
+import { topData, midData, botData } from '../utils/data';
 import './Home.css';
 
 function Home() {
@@ -12,52 +13,43 @@ function Home() {
           alt=""
         />
         <div className="home__row">
-          <Product
-            title="The Lean Startup"
-            price={19.99}
-            image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-            rating={5}
-          />
-          <Product
-            title="The Lean Startup"
-            price={19.99}
-            image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-            rating={5}
-          />
+          {topData.map((product) => {
+            const { title, price, image, rating } = product;
+            return (
+              <Product
+                title={title}
+                price={price}
+                image={image}
+                rating={rating}
+              />
+            );
+          })}
         </div>
         <div className="home__row">
-          <Product
-            title="The Lean Startup"
-            price={19.99}
-            image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-            rating={5}
-          />
-          <Product
-            title="The Lean Startup"
-            price={19.99}
-            image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-            rating={5}
-          />
-          <Product
-            title="The Lean Startup"
-            price={19.99}
-            image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-            rating={5}
-          />
+          {midData.map((product) => {
+            const { title, price, image, rating } = product;
+            return (
+              <Product
+                title={title}
+                price={price}
+                image={image}
+                rating={rating}
+              />
+            );
+          })}
         </div>
         <div className="home__row">
-          <Product
-            title="The Lean Startup"
-            price={19.99}
-            image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-            rating={5}
-          />
-          <Product
-            title="The Lean Startup"
-            price={19.99}
-            image="https://images-na.ssl-images-amazon.com/images/I/51Zymoq7UnL._AC_SY400_.jpg"
-            rating={5}
-          />
+          {botData.map((product) => {
+            const { title, price, image, rating } = product;
+            return (
+              <Product
+                title={title}
+                price={price}
+                image={image}
+                rating={rating}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

@@ -12,11 +12,11 @@ function Product({ title, image, price, rating }) {
           <strong>{price}</strong>
         </p>
         <div className="product__rating">
-          <ReactStars count={rating} size={24} />
+          <ReactStars count={rating} size={24} color="orange" />
         </div>
       </div>
       <img src={image} alt="" />
-      <button>Add to Basket</button>
+      <button>Add to Cart</button>
     </div>
   );
 }
