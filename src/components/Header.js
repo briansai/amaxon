@@ -22,10 +22,10 @@ function Header() {
         <SearchIcon className="header__search-icon" />
       </div>
       <div className="header__nav">
-        {headerOptions.map((option) => {
+        {headerOptions.map((option, index) => {
           const { line1, line2 } = option;
           return (
-            <div className="header__option">
+            <div key={`${line1}-${line2}-${index}`} className="header__option">
               <span className="header__option-line-1">{line1}</span>
               <span className="header__option-line-2">{line2}</span>
             </div>
