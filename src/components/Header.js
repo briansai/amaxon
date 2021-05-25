@@ -3,6 +3,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../context/StateProvider';
+import { headerOptions } from '../utils/constants';
 import './Header.css';
 
 function Header() {
@@ -21,20 +22,15 @@ function Header() {
         <SearchIcon className="header__search-icon" />
       </div>
       <div className="header__nav">
-        <div className="header__option">
-          <span className="header__option-line-1">Hello Guest</span>
-          <span className="header__option-line-2">Sign In</span>
-        </div>
-        <div className="header__option">
-          {' '}
-          <span className="header__option-line-1">Returns</span>
-          <span className="header__option-line-2">& Orders</span>
-        </div>
-        <div className="header__option">
-          {' '}
-          <span className="header__option-line-1">Your</span>
-          <span className="header__option-line-2">Prime</span>
-        </div>
+        {headerOptions.map((option) => {
+          const { line1, line2 } = option;
+          return (
+            <div className="header__option">
+              <span className="header__option-line-1">{line1}</span>
+              <span className="header__option-line-2">{line2}</span>
+            </div>
+          );
+        })}
         <Link to="/checkout">
           <div className="header__option-cart">
             <ShoppingCartIcon />
