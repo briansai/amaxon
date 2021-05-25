@@ -13,10 +13,12 @@ function Home() {
           alt=""
         />
         <div className="home__row">
-          {topData.map((product) => {
-            const { title, price, image, rating } = product;
+          {topData.map((product, index) => {
+            const { id, title, price, image, rating } = product;
             return (
               <Product
+                key={`${id}-${index}`}
+                id={id}
                 title={title}
                 price={price}
                 image={image}
@@ -26,10 +28,12 @@ function Home() {
           })}
         </div>
         <div className="home__row">
-          {midData.map((product) => {
-            const { title, price, image, rating } = product;
+          {midData.map((product, index) => {
+            const { id, title, price, image, rating } = product;
             return (
               <Product
+                key={`${id}-${index}`}
+                id={id}
                 title={title}
                 price={price}
                 image={image}
@@ -39,10 +43,12 @@ function Home() {
           })}
         </div>
         <div className="home__row">
-          {botData.map((product) => {
-            const { title, price, image, rating } = product;
+          {botData.map((product, index) => {
+            const { id, title, price, image, rating } = product;
             return (
               <Product
+                key={`${id}-${index}`}
+                id={id}
                 title={title}
                 price={price}
                 image={image}

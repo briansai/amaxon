@@ -1,8 +1,24 @@
 import React from 'react';
 import ReactStars from 'react-rating-stars-component';
+import { useStateValue } from '../context/StateProvider';
 import './Product.css';
 
-function Product({ title, image, price, rating }) {
+function Product({ id, title, image, price, rating }) {
+  const [state, dispatch] = useStateValue();
+  console.log(state);
+  const addToCart = () => {
+    dispatch({
+      type: 'ADD_TO_CART',
+      item: {
+        id,
+        title,
+        image,
+        price,
+        rating,
+      },
+    });
+  };
+
   return (
     <div className="product">
       <div className="product__info">
@@ -16,7 +32,7 @@ function Product({ title, image, price, rating }) {
         </div>
       </div>
       <img src={image} alt="" />
-      <button>Add to Cart</button>
+      <button onClick={addToCart}>Add to Cart</button>
     </div>
   );
 }

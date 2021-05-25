@@ -47,11 +47,11 @@
   color: white;
 }
 
-.header__basket-count {
+.header__cart-count {
   margin: 0 10px;
 }
 
-.header__option-basket {
+.header__option-cart {
   display: flex;
   align-items: center;
   color: white;
