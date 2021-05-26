@@ -23,12 +23,17 @@ function Header() {
       </div>
       <div className="header__nav">
         {headerOptions.map((option, index) => {
-          const { line1, line2 } = option;
+          const { line1, line2, link } = option;
           return (
-            <div key={`${line1}-${line2}-${index}`} className="header__option">
-              <span className="header__option-line-1">{line1}</span>
-              <span className="header__option-line-2">{line2}</span>
-            </div>
+            <Link to={link}>
+              <div
+                key={`${line1}-${line2}-${index}`}
+                className="header__option"
+              >
+                <span className="header__option-line-1">{line1}</span>
+                <span className="header__option-line-2">{line2}</span>
+              </div>
+            </Link>
           );
         })}
         <Link to="/checkout">
