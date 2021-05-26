@@ -4,7 +4,7 @@ import { useStateValue } from '../context/StateProvider';
 import './Product.css';
 
 function Product({ id, title, image, price, rating }) {
-  const [state, dispatch] = useStateValue();
+  const [dispatch] = useStateValue();
   const addToCart = () => {
     dispatch({
       type: 'ADD_TO_CART',

@@ -16,8 +16,12 @@ function Checkout() {
         />
         <div>
           <h2 className="checkout__title">Your Shopping Cart</h2>
-          {cart.map((item) => (
-            <CheckoutProduct key={item.id} item={item} />
+          {cart.map((item, index) => (
+            <CheckoutProduct
+              key={`${item.id}-${index}`}
+              item={item}
+              index={index}
+            />
           ))}
         </div>
       </div>

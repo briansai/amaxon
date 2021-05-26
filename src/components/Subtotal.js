@@ -6,7 +6,6 @@ import './Subtotal.css';
 
 function Subtotal() {
   const [{ cart }] = useStateValue();
-  console.log(cart);
   return (
     <div className="subtotal">
       <CurrencyFormat
