@@ -25,11 +25,8 @@ function Header() {
         {headerOptions.map((option, index) => {
           const { line1, line2, link } = option;
           return (
-            <Link to={link}>
-              <div
-                key={`${line1}-${line2}-${index}`}
-                className="header__option"
-              >
+            <Link to={link} key={`${line1}-${line2}-${index}`}>
+              <div className="header__option">
                 <span className="header__option-line-1">{line1}</span>
                 <span className="header__option-line-2">{line2}</span>
               </div>
