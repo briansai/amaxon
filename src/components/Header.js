@@ -5,9 +5,14 @@ import { Link } from 'react-router-dom';
 import { useStateValue } from '../context/StateProvider';
 import { headerOptions } from '../utils/constants';
 import './Header.css';
+import { auth } from '../firebase';
 
 function Header() {
-  const [{ cart }] = useStateValue();
+  const [{ cart, user }] = useStateValue();
+  const handleAuthentication = () => {
+    user && auth.signOut();
+  };
+
   return (
     <div className="header">
       <Link to="/">
@@ -23,9 +28,21 @@ function Header() {
       </div>
       <div className="header__nav">
         {headerOptions.map((option, index) => {
-          const { line1, line2, link } = option;
+          let { line1, line2, link } = option;
+          let checkAuth;
+          if (link === '/login' && user) {
+            line1 = `Hello ${user.email}`;
+            line2 = 'Sign Out';
+            link = '/';
+            checkAuth = handleAuthentication;
+          }
+
           return (
-            <Link to={link} key={`${line1}-${line2}-${index}`}>
+            <Link
+              to={link}
+              key={`${line1}-${line2}-${index}`}
+              onClick={checkAuth}
+            >
               <div className="header__option">
                 <span className="header__option-line-1">{line1}</span>
                 <span className="header__option-line-2">{line2}</span>

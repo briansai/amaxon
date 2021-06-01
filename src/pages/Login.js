@@ -5,8 +5,8 @@ import { authInputs } from '../utils/constants';
 import './Login.css';
 
 function Login() {
-  const history = useHistory();
   const [{ email, password }, setState] = useState({ authInputs });
+  const history = useHistory();
   const handleInput = (e) => {
     const { name, value } = e.target;
     setState((prevState) => ({ ...prevState, [name]: value }));
