@@ -20,7 +20,7 @@ export const homeImages = [
     link: 'https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/Y2UwYWM0MDQt/Y2UwYWM0MDQt-YzBhZjUwNjQt-w3000._CB670123750_.jpg',
   },
   {
-    link: 'https://images-eu.ssl-images-amazon.com/images/G/02/digital/video/merch2016/Hero/Covid19/Generic/GWBleedingHero_ENG_COVIDUPDATE__XSite_1500x600_PV_en-GB._cb428684220_.JPG',
+    link: 'https://images-na.ssl-images-amazon.com/images/G/01/em/pd21/xcm_em_prime_day_2021_775-usen_d_hp_tallhero_lifestyle_1500x600._CB668927510_.jpg',
   },
   {
     link: 'https://images-na.ssl-images-amazon.com/images/G/01/AMAZON_FASHION/2021/journeys/MzBiNjIyYjgt/MzBiNjIyYjgt-NWM5ZWJlYTct-w3000._CB669030425_.jpg',

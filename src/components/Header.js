@@ -4,6 +4,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../context/StateProvider';
 import { headerOptions } from '../utils/constants';
+import { getFirstName } from '../utils/functions';
 import './Header.css';
 import { auth } from '../firebase';
 
@@ -31,7 +32,7 @@ function Header() {
           let { line1, line2, link } = option;
           let checkAuth;
           if (link === '/login' && user) {
-            line1 = `Hello ${user.email}`;
+            line1 = `Hello ${getFirstName(user.displayName)}`;
             line2 = 'Sign Out';
             link = '/';
             checkAuth = handleAuthentication;

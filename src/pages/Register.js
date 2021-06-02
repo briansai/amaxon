@@ -19,7 +19,14 @@ function Register() {
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
-        res && history.push('/');
+        auth.currentUser
+          ?.updateProfile({
+            displayName: `${firstName} ${lastName}`,
+          })
+          .then(() => {
+            res && history.push('/');
+          })
+          .catch((err2) => alert(err2.message));
       })
       .catch((err) => alert(err.message));
   };
@@ -86,9 +93,9 @@ function Register() {
         </p>
         <p className="register__sign-in">
           <span>Already have an account?</span>{' '}
-          <a className="register__sign-in-link" onClick={signIn}>
+          <button className="register__sign-in-link" onClick={signIn}>
             Sign In
-          </a>
+          </button>
         </p>
       </div>
     </div>

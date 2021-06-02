@@ -2,6 +2,7 @@ import React from 'react';
 import CheckoutProduct from '../components/CheckoutProduct';
 import { useStateValue } from '../context/StateProvider';
 import Subtotal from '../components/Subtotal';
+import { getFirstName } from '../utils/functions';
 import './Checkout.css';
 
 function Checkout() {
@@ -15,7 +16,7 @@ function Checkout() {
           alt=""
         />
         <div>
-          <h3>Hello, {user?.email || 'Guest'}</h3>
+          <h3>Hello, {getFirstName(user?.displayName) || 'Guest'}</h3>
           <h2 className="checkout__title">Your Shopping Cart</h2>
           {cart.map((item, index) => (
             <CheckoutProduct
