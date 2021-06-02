@@ -3,5 +3,5 @@ export const getCartTotal = (cart) => {
 };
 
 export const getFirstName = (displayName) => {
-  return displayName.split(' ')[0];
+  return displayName?.split(' ')[0];
 };
