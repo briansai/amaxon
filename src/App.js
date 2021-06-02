@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Checkout from './pages/Checkout';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Payment from './pages/Payment';
 import './App.css';
 import { auth } from './firebase';
 import { useStateValue } from './context/StateProvider';
@@ -39,6 +40,10 @@ function App() {
           <Route path="/checkout">
             <Header />
             <Checkout />
+          </Route>
+          <Route path="/payment">
+            <Header />
+            <Payment />
           </Route>
           <Route path="/">
             <Header />
