@@ -11,6 +11,8 @@ export const headerOptions = [
 export const authInputs = {
   email: '',
   password: '',
+  firstName: '',
+  lastName: '',
 };
 
 export const homeImages = [

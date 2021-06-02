@@ -5,7 +5,9 @@ import { authInputs } from '../utils/constants';
 import './Login.css';
 
 function Login() {
-  const [{ email, password }, setState] = useState({ authInputs });
+  const [{ email, password }, setState] = useState({
+    authInputs,
+  });
   const history = useHistory();
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -22,15 +24,8 @@ function Login() {
       .catch((err) => alert(err.message));
   };
 
-  const register = (e) => {
-    e.preventDefault();
-
-    auth
-      .createUserWithEmailAndPassword(email, password)
-      .then((res) => {
-        res && history.push('/');
-      })
-      .catch((err) => alert(err.message));
+  const register = () => {
+    history.push('/register');
   };
 
   return (
@@ -51,16 +46,16 @@ function Login() {
             value={email || ''}
             name="email"
             onChange={handleInput}
+            required
           />
-
           <h5>Password</h5>
           <input
             type="password"
             value={password || ''}
             name="password"
             onChange={handleInput}
+            required
           />
-
           <button
             className="login__sign-in-button"
             type="submit"
