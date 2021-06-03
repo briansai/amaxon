@@ -15,12 +15,11 @@ function Login() {
   };
   const signIn = (e) => {
     e.preventDefault();
-    console.log(auth);
+
     auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         history.push('/');
-        console.log(history);
       })
       .catch((err) => alert(err.message));
   };
