@@ -27,7 +27,7 @@ function Product({ id, title, image, price, rating }) {
           <strong>{price}</strong>
         </p>
         <div className="product__rating">
-          <ReactStars count={rating} size={24} color="orange" />
+          <ReactStars count={rating} size={24} color="rgb(238, 186, 55)" />
         </div>
       </div>
       <img src={image} alt="" />

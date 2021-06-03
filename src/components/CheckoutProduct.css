@@ -8,11 +8,23 @@
 }
 
 .checkout-product__info > button {
-  background: #f0c14b;
-  border: 1px solid;
   margin-top: 10px;
-  border-color: #a88734 #9c7e31 #846a29;
+
+  background: linear-gradient(rgb(254, 230, 176), rgb(238, 186, 55))
+    rgb(254, 230, 176);
+  border: 0.2px solid rgb(238, 186, 55);
+  padding: 5px 20px;
+  border-radius: 0.2rem;
   color: #111;
+}
+
+.checkout-product__info > button:hover {
+  background: rgb(238, 186, 55);
+}
+
+.checkout-product__info > button:active {
+  border-color: #a88734 #9c7e31 #846a29;
+  box-shadow: 0 1px 1px black;
 }
 
 .checkout-product__image {

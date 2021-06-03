@@ -46,12 +46,21 @@
 }
 
 .register__register-button {
-  background: #f0c14b;
-  border-radius: 2px;
+  background: linear-gradient(rgb(254, 230, 176), rgb(238, 186, 55))
+    rgb(254, 230, 176);
+  border: 0.2px solid rgb(238, 186, 55);
+  width: 100%;
+  height: 30px;
   width: 100%;
   height: 30px;
   margin-top: 10px;
-  border-color: #a88734 #9c7e31 #846a29;
+  padding: 5px 20px;
+  border-radius: 0.2rem;
+  color: #111;
+}
+
+.register__register-button:hover {
+  background: rgb(238, 186, 55);
 }
 
 .register__sign-in {
@@ -66,8 +75,4 @@
   box-shadow: 0px 0px 0px transparent;
   border: 0px solid transparent;
   text-shadow: 0px 0px 0px transparent;
-}
-
-.register__sign-in-link:hover {
-  cursor: pointer;
 }

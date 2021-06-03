@@ -69,38 +69,47 @@ function Payment() {
             <p>Los Angeles, CA</p>
           </div>
         </div>
-        <div className="payment__section">
-          <div className="payment__title">
-            <h3>Review items and delivery</h3>
-          </div>
-          <div className="payment__items">
-            {cart.map((item) => (
-              <CheckoutProduct item={item} />
-            ))}
-          </div>
-        </div>
+
         <div className="payment__section">
           <div className="payment__title">
             <h3>Payment Method</h3>
           </div>
           <div className="payment__details">
-            <form onSubmit={handleSubmit}>
-              <CardElement onChange={handleChange} />
-              <div className="checkout__price-container">
-                <CurrencyFormat
-                  renderText={(value) => <h3>Order Total: {value} </h3>}
-                  decimalScale={2}
-                  value={getCartTotal(cart)}
-                  displayType={'text'}
-                  thousandSeparator={true}
-                  prefix={'$'}
-                />
-                <button disabled={processing || disabled || succeeded}>
-                  <span>
-                    {processing ? <p>Processing Payment</p> : 'Buy Now'}
-                  </span>
-                </button>
-              </div>
+            <fieldset className="payment__stripe">
+              <CardElement
+                onChange={handleChange}
+                className="payment__form-row"
+              />
+            </fieldset>
+          </div>
+        </div>
+        <div className="payment__section">
+          <div className="payment__title">
+            <h3>Review Items</h3>
+          </div>
+          <div className="payment__content">
+            <div className="payment__items">
+              {cart.map((item) => (
+                <CheckoutProduct item={item} />
+              ))}
+            </div>
+            <form className="payment__form" onSubmit={handleSubmit}>
+              <button
+                disabled={processing || disabled || succeeded || !cart.length}
+              >
+                <span>
+                  {processing ? <p>Processing Payment</p> : 'Place Your Order'}
+                </span>
+              </button>
+              <CurrencyFormat
+                renderText={(value) => <h3>Order Total: {value} </h3>}
+                decimalScale={2}
+                value={getCartTotal(cart)}
+                displayType={'text'}
+                thousandSeparator={true}
+                prefix={'$'}
+                className="payment__total"
+              />
               {err && <div>{err}</div>}
             </form>
           </div>
