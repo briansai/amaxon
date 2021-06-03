@@ -6,12 +6,12 @@ import { useStateValue } from '../context/StateProvider';
 import CheckoutProduct from '../components/CheckoutProduct';
 import { getCartTotal } from '../utils/functions';
 import './Payment.css';
-import { axiosInstance } from '../api/axios';
+import buildClient from '../api/buildClient';
 
 function Payment() {
   const [err, setErr] = useState(null);
-  const [disabled, setDisabled] = useState(true);
-  const [processing, setProcessing] = useState(false);
+  const [disabled, setDisabled] = useState(false);
+  const [processing, setProcessing] = useState('');
   const [succeeded, setSucceeded] = useState(false);
   const [clientSecret, setClientSecret] = useState(true);
   const [{ cart, user }] = useStateValue();
@@ -21,26 +21,28 @@ function Payment() {
 
   useEffect(() => {
     const getClientSecret = async () => {
-      const response = await axiosInstance({
+      const response = await axios({
         method: 'post',
-        url: `payment/create?total=${getCartTotal(cart) * 100}`,
+        url: `/payment/create?total=${getCartTotal(cart) * 100}`,
       });
 
       setClientSecret(response.data.clientSecret);
     };
 
-    getClientSecret();
+    cart.length && getClientSecret();
   }, [cart]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setProcessing(true);
 
-    const payload = stripe
+    stripe
       .confirmCardPayment(clientSecret, {
-        payment_method: { card: elements.getElement(CardElement) },
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
       })
-      .then((confirmation) => {
+      .then(() => {
         setSucceeded(true);
         setErr(null);
         setProcessing(false);
