@@ -28,7 +28,12 @@ function CheckoutProduct({ item }) {
           <strong>{price}</strong>
         </p>
         <div className="checkout-product__rating">
-          <ReactStars count={rating} size={24} color="orange" />
+          <ReactStars
+            count={rating}
+            size={24}
+            color="orange"
+            activeColor="rgb(238, 186, 55)"
+          />
         </div>
         <button onClick={(e) => removeItem(e)}>Remove from cart</button>
       </div>
