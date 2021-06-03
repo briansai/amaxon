@@ -19,6 +19,12 @@
   margin-right: 5px;
 }
 
+.subtotal > .disabled {
+  background: none;
+  color: darkgray;
+  border-color: darkgray;
+}
+
 .subtotal > button {
   background: #f0c14b;
   border-radius: 2px;

@@ -8,6 +8,7 @@ import './Subtotal.css';
 function Subtotal() {
   const [{ cart }] = useStateValue();
   const history = useHistory();
+  console.log(cart.length);
   return (
     <div className="subtotal">
       <CurrencyFormat
@@ -28,7 +29,11 @@ function Subtotal() {
         thousandSeparator={true}
         prefix={'$'}
       />
-      <button onClick={(e) => history.push('/payment')}>
+      <button
+        disabled={cart.length ? false : true}
+        onClick={(e) => history.push('/payment')}
+        className={!cart.length && 'disabled'}
+      >
         Proceed to Checkout
       </button>
     </div>

@@ -5,8 +5,8 @@ import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useStateValue } from '../context/StateProvider';
 import CheckoutProduct from '../components/CheckoutProduct';
 import { getCartTotal } from '../utils/functions';
-import './Payment.css';
 import buildClient from '../api/buildClient';
+import './Payment.css';
 
 function Payment() {
   const [err, setErr] = useState(null);
@@ -21,7 +21,7 @@ function Payment() {
 
   useEffect(() => {
     const getClientSecret = async () => {
-      const response = await axios({
+      const response = await buildClient({
         method: 'post',
         url: `/payment/create?total=${getCartTotal(cart) * 100}`,
       });

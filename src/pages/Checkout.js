@@ -17,7 +17,9 @@ function Checkout() {
         />
         <div>
           <h3>Hello, {getFirstName(user?.displayName) || 'Guest'}</h3>
-          <h2 className="checkout__title">Your Shopping Cart</h2>
+          <h2 className="checkout__title">
+            {cart.length ? 'Your Shopping Cart' : 'Your Shopping Cart Is Empty'}
+          </h2>
           {cart.map((item, index) => (
             <CheckoutProduct
               key={`${item.id}-${index}`}
