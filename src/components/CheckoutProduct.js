@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactStars from 'react-rating-stars-component';
 import { useStateValue } from '../context/StateProvider';
+import { displayStars } from '../utils/functions';
 import './CheckoutProduct.css';
 
 function CheckoutProduct({ item }) {
@@ -27,14 +27,7 @@ function CheckoutProduct({ item }) {
           <small>$</small>
           <strong>{price}</strong>
         </p>
-        <div className="checkout-product__rating">
-          <ReactStars
-            count={rating}
-            size={24}
-            color="orange"
-            activeColor="rgb(238, 186, 55)"
-          />
-        </div>
+        <div className="checkout-product__rating">{displayStars(rating)}</div>
         <button onClick={(e) => removeItem(e)}>Remove from cart</button>
       </div>
     </div>

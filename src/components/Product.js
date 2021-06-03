@@ -1,6 +1,6 @@
 import React from 'react';
-import ReactStars from 'react-rating-stars-component';
 import { useStateValue } from '../context/StateProvider';
+import { displayStars } from '../utils/functions';
 import './Product.css';
 
 function Product({ id, title, image, price, rating }) {
@@ -26,14 +26,7 @@ function Product({ id, title, image, price, rating }) {
           <small>$</small>
           <strong>{price}</strong>
         </p>
-        <div className="product__rating">
-          <ReactStars
-            count={rating}
-            size={24}
-            color="rgb(238, 186, 55)"
-            activeColor="rgb(238, 186, 55)"
-          />
-        </div>
+        <div className="product__rating">{displayStars(rating)}</div>
       </div>
       <img src={image} alt="" />
       <button onClick={addToCart}>Add to Cart</button>
