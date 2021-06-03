@@ -89,8 +89,8 @@ function Payment() {
           </div>
           <div className="payment__content">
             <div className="payment__items">
-              {cart.map((item) => (
-                <CheckoutProduct item={item} />
+              {cart.map((item, index) => (
+                <CheckoutProduct key={`${item.id}-${index}`} item={item} />
               ))}
             </div>
             <form className="payment__form" onSubmit={handleSubmit}>
