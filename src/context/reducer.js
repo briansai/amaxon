@@ -1,6 +1,7 @@
 export const initialState = {
   cart: [],
   user: null,
+  notifications: [],
 };
 
 export const reducer = (state, action) => {
@@ -32,6 +33,19 @@ export const reducer = (state, action) => {
         ...state,
         user: action.user,
       };
+
+    case 'ADD_NOTIFICATION':
+      return {
+        ...state,
+        notifications: [...state.notifications, action.item],
+      };
+
+    // case 'REMOVE_NOTIFICATION':
+    //   const newNotificationList = const index = state.cart.findIndex((item) => item.id === action.);
+    //   return {
+    //     ...state,
+    //     notifications: [...state.notifications, newNotificationList]
+    //   }
 
     default:
       return state;

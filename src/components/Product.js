@@ -1,6 +1,8 @@
 import React from 'react';
 import { useStateValue } from '../context/StateProvider';
 import { displayStars } from '../utils/functions';
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css';
 import './Product.css';
 
 function Product({ id, title, image, price, rating }) {
@@ -14,6 +16,13 @@ function Product({ id, title, image, price, rating }) {
         image,
         price,
         rating,
+      },
+    });
+    dispatch({
+      type: 'ADD_NOTIFICATION',
+      item: {
+        id,
+        title,
       },
     });
   };
