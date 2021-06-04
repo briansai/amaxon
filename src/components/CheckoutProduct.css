@@ -28,7 +28,12 @@
 }
 
 .checkout-product__image {
+  display: block;
   object-fit: contain;
-  width: 180px;
-  height: 180px;
+  min-width: 180px;
+  min-height: 180px;
+}
+
+.checkout-product__rating {
+  display: flex;
 }
