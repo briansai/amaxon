@@ -8,15 +8,13 @@ function Notifications() {
 
   return (
     <div className="notifications">
-      {notifications.map((notification, index) => {
-        return (
-          <Notification
-            key={`${notification.id}-${index}`}
-            notification={notification}
-            index={index}
-          />
-        );
-      })}
+      {notifications.map((notification, index) => (
+        <Notification
+          key={`${notification.id}-${index}`}
+          notification={notification}
+          index={index}
+        />
+      ))}
     </div>
   );
 }
