@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <div className="header">
+    <div className="header" style={{ width: window.width }}>
       <Link to="/">
         <img
           className="header__logo"

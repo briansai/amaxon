@@ -40,13 +40,6 @@ export const reducer = (state, action) => {
         notifications: [...state.notifications, action.item],
       };
 
-    // case 'REMOVE_NOTIFICATION':
-    //   const newNotificationList = const index = state.cart.findIndex((item) => item.id === action.);
-    //   return {
-    //     ...state,
-    //     notifications: [...state.notifications, newNotificationList]
-    //   }
-
     default:
       return state;
   }

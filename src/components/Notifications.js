@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStateValue } from '../context/StateProvider';
 import Notification from './Notification';
+import './Notifications.css';
 
-function Notifications({}) {
-  const [{ notifications }, dispatch] = useStateValue();
+function Notifications() {
+  let [{ notifications }] = useStateValue();
 
   return (
-    <div>
-      {notifications.map((notification, index) => (
-        <Notification
-          key={`${notification.id}-${index}`}
-          notification={notification}
-        />
-      ))}
+    <div className="notifications">
+      {notifications.map((notification, index) => {
+        return (
+          <Notification
+            key={`${notification.id}-${index}`}
+            notification={notification}
+            index={index}
+          />
+        );
+      })}
     </div>
   );
 }
