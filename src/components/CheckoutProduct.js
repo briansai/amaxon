@@ -1,17 +1,44 @@
 import React from 'react';
+import { toast, Slide } from 'react-toastify';
 import { useStateValue } from '../context/StateProvider';
 import { displayStars } from '../utils/functions';
+import { toastType } from '../utils/constants';
 import './CheckoutProduct.css';
+
+const Toast = ({ item, type }) => {
+  const { icon, text } = toastType[type];
+
+  return (
+    <div className="toast">
+      <div className="toast__icon">{icon()}</div>
+      <div className="toast__item">{`${item} was ${text} from cart.`}</div>
+    </div>
+  );
+};
 
 function CheckoutProduct({ item }) {
   const [, dispatch] = useStateValue();
   const { id, title, price, rating, image } = item;
-  const removeItem = () => {
+
+  const removeItem = (e) => {
+    e.preventDefault();
     dispatch({
       type: 'REMOVE_FROM_CART',
       id,
     });
+
+    toast(<Toast item={title} type="removeToast" />, {
+      position: 'top-right',
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      className: 'product__toast',
+      transition: Slide,
+    });
   };
+
   return (
     <div className="checkout-product">
       <img

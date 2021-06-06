@@ -37,3 +37,20 @@
 .checkout-product__rating {
   display: flex;
 }
+
+/* Toast Styles */
+.Toastify__close-button {
+  color: white;
+}
+
+.toast {
+  display: flex;
+}
+
+.toast__icon {
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  padding-right: 15px;
+  border-right: 1px solid red;
+}

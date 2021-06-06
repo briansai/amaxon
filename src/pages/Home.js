@@ -1,5 +1,4 @@
 import React from 'react';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Product from '../components/Product';
 import ImageGallery from '../components/ImageGallery';
@@ -9,7 +8,6 @@ import './Home.css';
 function Home() {
   return (
     <div className="home">
-      <ToastContainer className="home__toast-container" />
       <div className="home__container">
         <ImageGallery />
         <div className="home__row">

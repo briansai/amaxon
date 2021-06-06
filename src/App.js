@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Checkout from './pages/Checkout';
@@ -28,6 +29,7 @@ function App() {
   return (
     <Router>
       <div className="app">
+        <ToastContainer className="home__toast-container" />
         <Switch>
           <Route path="/login">
             <Login />
