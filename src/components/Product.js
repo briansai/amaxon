@@ -1,10 +1,20 @@
 import React from 'react';
+import { toast, Slide } from 'react-toastify';
 import { useStateValue } from '../context/StateProvider';
 import { displayStars } from '../utils/functions';
-import { toast, Slide } from 'react-toastify';
-import 'react-notifications-component/dist/theme.css';
-import 'animate.css';
+import { toastType } from '../utils/constants';
 import './Product.css';
+
+const Toast = ({ item, type }) => {
+  const { icon, text } = toastType[type];
+
+  return (
+    <div className="toast">
+      <div className="toast__icon">{icon()}</div>
+      <div className="toast__item">{`${item} was ${text} from cart.`}</div>
+    </div>
+  );
+};
 
 function Product({ id, title, image, price, rating }) {
   const [, dispatch] = useStateValue();
@@ -19,10 +29,9 @@ function Product({ id, title, image, price, rating }) {
         rating,
       },
     });
-
-    toast(`${title} was added to cart`, {
+    toast(<Toast item={title} type="addToast" />, {
       position: 'top-right',
-      autoClose: 3000,
+      autoClose: 5000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,

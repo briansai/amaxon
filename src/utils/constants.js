@@ -1,3 +1,7 @@
+import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline';
+import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import { green, red } from '@material-ui/core/colors';
+
 export const headerOptions = [
   {
     line1: 'Hello Guest',
@@ -32,3 +36,18 @@ export const homeImages = [
     link: 'https://images-na.ssl-images-amazon.com/images/G/01/Audible/Revelation-GatewayHeroDesktop-English-2x-3000x1200-V03._CB655334651_.jpg',
   },
 ];
+
+export const toastType = {
+  addToast: {
+    icon: () => (
+      <CheckCircleOutlineIcon style={{ color: green[500], fontSize: 30 }} />
+    ),
+    text: 'added',
+  },
+  removeToast: {
+    icon: () => (
+      <RemoveCircleOutlineIcon style={{ color: red[500], fontSize: 30 }} />
+    ),
+    text: 'removed',
+  },
+};
