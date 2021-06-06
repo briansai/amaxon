@@ -7,6 +7,7 @@ import Checkout from './pages/Checkout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Payment from './pages/Payment';
+import Orders from './pages/Orders';
 import './App.css';
 import { auth } from './firebase';
 import { useStateValue } from './context/StateProvider';
@@ -36,6 +37,10 @@ function App() {
           </Route>
           <Route path="/register">
             <Register />
+          </Route>
+          <Route path="/orders">
+            <Header />
+            <Orders />
           </Route>
           <Route path="/checkout">
             <Header />

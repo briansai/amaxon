@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { db } from '../firebase';
 import { useStateValue } from '../context/StateProvider';
 import CheckoutProduct from '../components/CheckoutProduct';
 import { getCartTotal } from '../utils/functions';
@@ -14,13 +15,14 @@ function Payment() {
   const [processing, setProcessing] = useState('');
   const [succeeded, setSucceeded] = useState(false);
   const [clientSecret, setClientSecret] = useState(true);
-  const [{ cart, user }] = useStateValue();
+  const [{ cart, user }, dispatch] = useStateValue();
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
 
   useEffect(() => {
     const getClientSecret = async () => {
+      console.log(getCartTotal(cart) * 100);
       const response = await buildClient({
         method: 'post',
         url: `/payment/create?total=${getCartTotal(cart) * 100}`,
@@ -42,7 +44,14 @@ function Payment() {
           card: elements.getElement(CardElement),
         },
       })
-      .then(() => {
+      .then((confirmation) => {
+        const { id, amount, created } = confirmation.paymentIntent;
+        db.collection('users').doc(user?.id).collection('orders').doc(id).set({
+          cart,
+          amount,
+          created,
+        });
+
         setSucceeded(true);
         setErr(null);
         setProcessing(false);
