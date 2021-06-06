@@ -37,6 +37,12 @@
   box-shadow: 0 1px 1px black;
 }
 
+.product__toast {
+  border-radius: 0.75rem;
+  background-color: #404040;
+  color: white;
+}
+
 .product__price {
   margin-top: 5px;
 }
@@ -48,4 +54,8 @@
 
 .product__rating {
   display: flex;
+}
+
+.Toastify__close-button {
+  color: white;
 }

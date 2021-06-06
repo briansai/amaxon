@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStateValue } from '../context/StateProvider';
 import { displayStars } from '../utils/functions';
+import { toast, Slide } from 'react-toastify';
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css';
 import './Product.css';
@@ -18,12 +19,16 @@ function Product({ id, title, image, price, rating }) {
         rating,
       },
     });
-    dispatch({
-      type: 'ADD_NOTIFICATION',
-      item: {
-        id,
-        title,
-      },
+
+    toast(`${title} was added to cart`, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      className: 'product__toast',
+      transition: Slide,
     });
   };
 

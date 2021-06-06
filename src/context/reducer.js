@@ -20,7 +20,7 @@ export const reducer = (state, action) => {
         newCart.splice(index, 1);
       } else {
         console.warn(
-          `Can't remove product (id: ${action.id}) as it is not in cart!`
+          `Can't remove product (id: ${action.id}) because it is not in cart!`
         );
       }
       return {
@@ -32,12 +32,6 @@ export const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
-      };
-
-    case 'ADD_NOTIFICATION':
-      return {
-        ...state,
-        notifications: [...state.notifications, action.item],
       };
 
     default:

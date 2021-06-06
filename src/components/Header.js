@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import { Link } from 'react-router-dom';
@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <div className="header" style={{ width: window.width }}>
+    <div className="header">
       <Link to="/">
         <img
           className="header__logo"

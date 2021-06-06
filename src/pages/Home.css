@@ -5,6 +5,10 @@
   max-width: 1500px;
 }
 
+.home__toast-container {
+  top: 8%;
+}
+
 .home__row {
   display: flex;
   z-index: 1;
