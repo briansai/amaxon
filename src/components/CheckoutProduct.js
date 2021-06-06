@@ -16,7 +16,7 @@ const Toast = ({ item, type }) => {
   );
 };
 
-function CheckoutProduct({ item }) {
+function CheckoutProduct({ item, hideButton }) {
   const [, dispatch] = useStateValue();
   const { id, title, price, rating, image } = item;
 
@@ -29,7 +29,7 @@ function CheckoutProduct({ item }) {
 
     toast(<Toast item={title} type="removeToast" />, {
       position: 'top-right',
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: true,
       closeOnClick: true,
       pauseOnHover: true,
@@ -55,7 +55,9 @@ function CheckoutProduct({ item }) {
           <strong>{price}</strong>
         </p>
         <div className="checkout-product__rating">{displayStars(rating)}</div>
-        <button onClick={(e) => removeItem(e)}>Remove from cart</button>
+        {!hideButton && (
+          <button onClick={(e) => removeItem(e)}>Remove from cart</button>
+        )}
       </div>
     </div>
   );

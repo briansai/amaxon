@@ -46,7 +46,7 @@ function Payment() {
       })
       .then((confirmation) => {
         const { id, amount, created } = confirmation.paymentIntent;
-        db.collection('users').doc(user?.id).collection('orders').doc(id).set({
+        db.collection('users').doc(user?.uid).collection('orders').doc(id).set({
           cart,
           amount,
           created,
@@ -110,10 +110,9 @@ function Payment() {
             <form className="payment__form" onSubmit={handleSubmit}>
               <button
                 disabled={processing || disabled || succeeded || !cart.length}
+                className={processing ? 'disabled' : null}
               >
-                <span>
-                  {processing ? <p>Processing Payment</p> : 'Place Your Order'}
-                </span>
+                {processing ? 'Payment Processing' : 'Place Your Order'}
               </button>
               <CurrencyFormat
                 renderText={(value) => <h3>Order Total: {value} </h3>}

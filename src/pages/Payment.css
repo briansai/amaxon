@@ -59,6 +59,10 @@
   box-shadow: 0 1px 1px black;
 }
 
+.payment__form > .disabled {
+  background-color: lightgray;
+}
+
 .payment__stripe,
 .payment__form {
   border: 0.5px solid lightgray;

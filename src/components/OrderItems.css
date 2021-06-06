@@ -1,0 +1,7 @@
+.order-items {
+  padding: 1rem 2rem;
+}
+
+.order-items__product:not(:last-child) {
+  border-bottom: 2px solid #e0e0e0;
+}

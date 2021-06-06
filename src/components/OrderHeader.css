@@ -1,0 +1,27 @@
+.order-header {
+  display: flex;
+  background-color: #e0e0e0;
+  padding: 20px 40px;
+  text-transform: uppercase;
+}
+
+.order-header__left {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+}
+
+.order-header__right {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.order-header__text {
+  font-size: 12px;
+}
+
+.order-header__content {
+  font-size: 14px;
+}
