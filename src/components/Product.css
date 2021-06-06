@@ -61,11 +61,11 @@
   color: white;
 }
 
-.toast {
+.product__toast {
   display: flex;
 }
 
-.toast__icon {
+.product__toast-icon {
   display: flex;
   align-items: center;
   margin-right: 15px;

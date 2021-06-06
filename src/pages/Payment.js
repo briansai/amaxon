@@ -46,6 +46,11 @@ function Payment() {
         setSucceeded(true);
         setErr(null);
         setProcessing(false);
+
+        dispatch({
+          type: 'EMPTY_CART',
+        });
+
         history.replace('/orders');
       });
   };

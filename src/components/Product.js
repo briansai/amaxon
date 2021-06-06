@@ -9,9 +9,9 @@ const Toast = ({ item, type }) => {
   const { icon, text } = toastType[type];
 
   return (
-    <div className="toast">
-      <div className="toast__icon">{icon()}</div>
-      <div className="toast__item">{`${item} was ${text} from cart.`}</div>
+    <div className="product__toast">
+      <div className="product__toast-icon">{icon()}</div>
+      <div className="product__toast-item">{`${item} was ${text} from cart.`}</div>
     </div>
   );
 };
