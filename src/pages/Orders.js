@@ -5,7 +5,7 @@ import Order from '../components/Order';
 import './Orders.css';
 
 function Orders() {
-  const [{ cart, user }, dispatch] = useStateValue();
+  const [{ user }] = useStateValue();
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
@@ -16,12 +16,12 @@ function Orders() {
           .collection('orders')
           .orderBy('created', 'desc')
           .onSnapshot((snapshot) => {
-            const p = snapshot.docs.map((doc) => ({
-              id: doc.id,
-              data: doc.data(),
-            }));
-            console.log(p);
-            setOrders(p);
+            setOrders(
+              snapshot.docs.map((doc) => ({
+                id: doc.id,
+                data: doc.data(),
+              }))
+            );
           })
       : setOrders([]);
   }, [user]);
@@ -30,8 +30,8 @@ function Orders() {
     <div className="orders">
       <h1>Your Orders</h1>
       <div className="orders__order">
-        {orders?.map((order) => (
-          <Order order={order} />
+        {orders?.map((order, index) => (
+          <Order order={order} key={`${order.id}-${index}`} />
         ))}
       </div>
     </div>
