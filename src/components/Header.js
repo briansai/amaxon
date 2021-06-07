@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import { Link } from 'react-router-dom';
 import { useStateValue } from '../context/StateProvider';
+import HeaderDropdown from './HeaderDropdown';
 import { headerOptions } from '../utils/constants';
 import { getFirstName } from '../utils/functions';
 import './Header.css';
@@ -39,16 +40,19 @@ function Header() {
           }
 
           return (
-            <Link
-              to={link}
-              key={`${line1}-${line2}-${index}`}
-              onClick={checkAuth}
-            >
-              <div className="header__option">
-                <span className="header__option-line-1">{line1}</span>
-                <span className="header__option-line-2">{line2}</span>
-              </div>
-            </Link>
+            <Fragment>
+              <Link
+                to={link}
+                key={`${line1}-${line2}-${index}`}
+                onClick={checkAuth}
+              >
+                <div className="header__option">
+                  <span className="header__option-line-1">{line1}</span>
+                  <span className="header__option-line-2">{line2}</span>
+                </div>
+              </Link>
+              {line2 === 'Settings' ? <HeaderDropdown /> : null}
+            </Fragment>
           );
         })}
         <Link to="/checkout">

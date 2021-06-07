@@ -9,7 +9,7 @@ export const headerOptions = [
     link: '/login',
   },
   { line1: 'Returns', line2: '& Orders', link: '/orders' },
-  { line1: 'Your', line2: 'Prime', link: '' },
+  { line1: 'Manage', line2: 'Settings', link: '' },
 ];
 
 export const authInputs = {

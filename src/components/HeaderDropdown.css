@@ -1,0 +1,75 @@
+.header-dropdown {
+  position: absolute;
+  background-color: white;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  bottom: -85px;
+  right: 50px;
+  width: 200px;
+  -webkit-box-shadow: 0 3px 5px #404040;
+  -moz-box-shadow: 0 3px 5px #404040;
+  box-shadow: 0 3px 5px #404040;
+}
+
+.header-dropdown__close {
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.header-dropdown__close > button:hover {
+  color: #404040;
+}
+
+.header-dropdown__arrow {
+  position: absolute;
+  top: -6px;
+  right: 50px;
+}
+
+.header-dropdown__arrow-inner {
+  border-style: solid;
+  border-width: 9px;
+  border-color: transparent;
+  border-top-width: 0;
+  border-bottom: 9px solid #fff;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  position: absolute;
+  top: 1px;
+}
+
+.header-dropdown__option {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.header-dropdown__option > input {
+  margin-right: 10px;
+}
+
+.header-dropdown__option-text {
+  font-size: 12px;
+}
+
+.header-dropdown__option-save {
+  text-align: right;
+  font-size: 10px;
+  padding-top: 10px;
+}
+
+.header-dropdown__option-save-text {
+  color: blue;
+}
+
+.header-dropdown > div > button {
+  background: transparent;
+  box-shadow: 0px 0px 0px transparent;
+  border: 0px solid transparent;
+  text-shadow: 0px 0px 0px transparent;
+}
