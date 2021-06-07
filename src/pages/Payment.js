@@ -22,7 +22,6 @@ function Payment() {
 
   useEffect(() => {
     const getClientSecret = async () => {
-      console.log(getCartTotal(cart) * 100);
       const response = await buildClient({
         method: 'post',
         url: `/payment/create?total=${getCartTotal(cart) * 100}`,
@@ -38,30 +37,36 @@ function Payment() {
     e.preventDefault();
     setProcessing(true);
 
-    stripe
-      .confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
-      })
-      .then((confirmation) => {
-        const { id, amount, created } = confirmation.paymentIntent;
-        db.collection('users').doc(user?.uid).collection('orders').doc(id).set({
-          cart,
-          amount,
-          created,
-        });
+    !user
+      ? history.push('/login')
+      : stripe
+          .confirmCardPayment(clientSecret, {
+            payment_method: {
+              card: elements.getElement(CardElement),
+            },
+          })
+          .then((confirmation) => {
+            const { id, amount, created } = confirmation.paymentIntent;
+            db.collection('users')
+              .doc(user?.uid)
+              .collection('orders')
+              .doc(id)
+              .set({
+                cart,
+                amount,
+                created,
+              });
 
-        setSucceeded(true);
-        setErr(null);
-        setProcessing(false);
+            setSucceeded(true);
+            setErr(null);
+            setProcessing(false);
 
-        dispatch({
-          type: 'EMPTY_CART',
-        });
+            dispatch({
+              type: 'EMPTY_CART',
+            });
 
-        history.replace('/orders');
-      });
+            history.replace('/orders');
+          });
   };
   const handleChange = (e) => {
     const { empty, error } = e;
