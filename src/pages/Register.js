@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { auth } from '../firebase';
-import { authInputs } from '../utils/constants';
+import { authInputs, authErrors } from '../utils/constants';
 import './Register.css';
 
 function Register() {
   const [{ email, password, firstName, lastName }, setState] = useState({
     authInputs,
+  });
+  const [errors, setErrors] = useState({
+    authErrors,
   });
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -25,10 +28,16 @@ function Register() {
           })
           .then(() => {
             res && history.push('/');
-          })
-          .catch((err2) => alert(err2.message));
+          });
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => {
+        const { code, message } = err;
+        const errs = {
+          'auth/weak-password': () => setErrors({ password: message }),
+          'auth/email-already-in-use': () => setErrors({ email: message }),
+        };
+        errs[code]();
+      });
   };
   const signIn = () => {
     history.push('/login');
@@ -45,7 +54,7 @@ function Register() {
       </Link>
       <div className="login__container">
         <h1>Create account</h1>
-        <form onsubmit={register}>
+        <form onSubmit={register}>
           <h5>First Name</h5>
           <input
             type="text"
@@ -70,6 +79,9 @@ function Register() {
             onChange={handleInput}
             required
           />
+          {errors.email ? (
+            <div className="register__errors">`* ${errors.email}` </div>
+          ) : null}
           <h5>Password</h5>
           <input
             type="password"
@@ -78,6 +90,9 @@ function Register() {
             onChange={handleInput}
             required
           />
+          {errors.password ? (
+            <div className="register__errors">`* ${errors.password}` </div>
+          ) : null}
           <button className="register__register-button" type="submit">
             Create your Amazon account
           </button>

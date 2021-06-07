@@ -43,7 +43,7 @@ function Login() {
       </Link>
       <div className="login__container">
         <h1>Sign-in</h1>
-        <form onsubmit={signIn}>
+        <form onSubmit={signIn}>
           <h5>E-mail</h5>
           <input
             type="text"

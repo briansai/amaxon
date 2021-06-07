@@ -19,6 +19,11 @@ export const authInputs = {
   lastName: '',
 };
 
+export const authErrors = {
+  email: '',
+  password: '',
+};
+
 export const homeImages = [
   {
     link: 'https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/Y2UwYWM0MDQt/Y2UwYWM0MDQt-YzBhZjUwNjQt-w3000._CB670123750_.jpg',
