@@ -43,7 +43,7 @@ function Login() {
       </Link>
       <div className="login__container">
         <h1>Sign-in</h1>
-        <form>
+        <form onsubmit={signIn}>
           <h5>E-mail</h5>
           <input
             type="text"
@@ -60,11 +60,7 @@ function Login() {
             onChange={handleInput}
             required
           />
-          <button
-            className="login__sign-in-button"
-            type="submit"
-            onClick={signIn}
-          >
+          <button className="login__sign-in-button" type="submit">
             Sign In
           </button>
         </form>

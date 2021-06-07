@@ -45,7 +45,7 @@ function Register() {
       </Link>
       <div className="login__container">
         <h1>Create account</h1>
-        <form>
+        <form onsubmit={register}>
           <h5>First Name</h5>
           <input
             type="text"
@@ -78,11 +78,7 @@ function Register() {
             onChange={handleInput}
             required
           />
-          <button
-            className="register__register-button"
-            type="submit"
-            onClick={register}
-          >
+          <button className="register__register-button" type="submit">
             Create your Amazon account
           </button>
         </form>
