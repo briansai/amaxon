@@ -3,7 +3,7 @@
   background-color: white;
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
-  bottom: -85px;
+  bottom: -115px;
   right: 50px;
   width: 200px;
   -webkit-box-shadow: 0 3px 5px #404040;
@@ -11,16 +11,11 @@
   box-shadow: 0 3px 5px #404040;
 }
 
-.header-dropdown__close {
+.header-dropdown__header {
   display: flex;
-  justify-content: flex-end;
-  font-size: 12px;
-  text-align: right;
+  justify-content: space-between;
   margin-bottom: 10px;
-}
-
-.header-dropdown__close > button:hover {
-  color: #404040;
+  padding: 10px 0;
 }
 
 .header-dropdown__arrow {
@@ -67,9 +62,13 @@
   color: blue;
 }
 
-.header-dropdown > div > button {
+button {
   background: transparent;
   box-shadow: 0px 0px 0px transparent;
   border: 0px solid transparent;
   text-shadow: 0px 0px 0px transparent;
+}
+
+button:hover {
+  color: #404040;
 }

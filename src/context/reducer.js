@@ -2,6 +2,7 @@ export const initialState = {
   cart: [],
   user: null,
   notifications: [],
+  toast: true,
 };
 
 export const reducer = (state, action) => {
@@ -38,6 +39,13 @@ export const reducer = (state, action) => {
       return {
         ...state,
         user: action.user,
+      };
+
+    case 'SET_NOTIFICATIONS':
+      console.log(action);
+      return {
+        ...state,
+        toast: action.notify,
       };
 
     default:

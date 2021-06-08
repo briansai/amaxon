@@ -49,6 +49,10 @@
   color: white;
 }
 
+.header__option:hover {
+  cursor: pointer;
+}
+
 .header__cart-count {
   margin: 0 10px;
 }

@@ -1,19 +1,28 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import useClickOutside from 'use-click-outside';
 import { useStateValue } from '../context/StateProvider';
 import HeaderDropdown from './HeaderDropdown';
-import { headerOptions } from '../utils/constants';
-import { getFirstName } from '../utils/functions';
 import './Header.css';
 import { auth } from '../firebase';
 
 function Header() {
   const [{ cart, user }] = useStateValue();
+  const [dropdown, setDropdown] = useState(false);
+  const settingsRef = useRef();
   const handleAuthentication = () => {
     user && auth.signOut();
   };
+
+  const exitClick = () => {
+    if (dropdown) {
+      setDropdown(false);
+    }
+  };
+
+  useClickOutside(settingsRef, exitClick);
 
   return (
     <div className="header">
@@ -29,32 +38,28 @@ function Header() {
         <SearchIcon className="header__search-icon" />
       </div>
       <div className="header__nav">
-        {headerOptions.map((option, index) => {
-          let { line1, line2, link } = option;
-          let checkAuth;
-          if (link === '/login' && user) {
-            line1 = `Hello ${getFirstName(user.displayName)}`;
-            line2 = 'Sign Out';
-            link = '/';
-            checkAuth = handleAuthentication;
-          }
-
-          return (
-            <Fragment>
-              <Link
-                to={link}
-                key={`${line1}-${line2}-${index}`}
-                onClick={checkAuth}
-              >
-                <div className="header__option">
-                  <span className="header__option-line-1">{line1}</span>
-                  <span className="header__option-line-2">{line2}</span>
-                </div>
-              </Link>
-              {line2 === 'Settings' ? <HeaderDropdown /> : null}
-            </Fragment>
-          );
-        })}
+        <Link to={'/login'} onClick={handleAuthentication}>
+          <div className="header__option">
+            <span className="header__option-line-1">Hello Guest</span>
+            <span className="header__option-line-2">Sign In</span>
+          </div>
+        </Link>
+        <Link to={'/orders'}>
+          <div className="header__option">
+            <span className="header__option-line-1">Returns</span>
+            <span className="header__option-line-2">& Orders</span>
+          </div>
+        </Link>
+        <Fragment ref={settingsRef}>
+          <div
+            className="header__option"
+            onClick={() => setDropdown(!dropdown)}
+          >
+            <span className="header__option-line-1">Manage</span>
+            <span className="header__option-line-2">Settings</span>
+          </div>
+          {dropdown ? <HeaderDropdown setDropdown={setDropdown} /> : null}
+        </Fragment>
         <Link to="/checkout">
           <div className="header__option-cart">
             <ShoppingCartIcon />
