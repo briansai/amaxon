@@ -42,7 +42,6 @@ export const reducer = (state, action) => {
       };
 
     case 'SET_NOTIFICATIONS':
-      console.log(action);
       return {
         ...state,
         toast: action.notify,

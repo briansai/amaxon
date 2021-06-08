@@ -50,7 +50,7 @@ function Header() {
             <span className="header__option-line-2">& Orders</span>
           </div>
         </Link>
-        <Fragment ref={settingsRef}>
+        <div ref={settingsRef}>
           <div
             className="header__option"
             onClick={() => setDropdown(!dropdown)}
@@ -59,7 +59,7 @@ function Header() {
             <span className="header__option-line-2">Settings</span>
           </div>
           {dropdown ? <HeaderDropdown setDropdown={setDropdown} /> : null}
-        </Fragment>
+        </div>
         <Link to="/checkout">
           <div className="header__option-cart">
             <ShoppingCartIcon />
