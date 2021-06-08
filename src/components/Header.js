@@ -7,6 +7,7 @@ import { useStateValue } from '../context/StateProvider';
 import HeaderDropdown from './HeaderDropdown';
 import './Header.css';
 import { auth } from '../firebase';
+import { getFirstName } from '../utils/functions';
 
 function Header() {
   const [{ cart, user }] = useStateValue();
@@ -17,9 +18,7 @@ function Header() {
   };
 
   const exitClick = () => {
-    if (dropdown) {
-      setDropdown(false);
-    }
+    dropdown && setDropdown(false);
   };
 
   useClickOutside(settingsRef, exitClick);
@@ -38,10 +37,14 @@ function Header() {
         <SearchIcon className="header__search-icon" />
       </div>
       <div className="header__nav">
-        <Link to={'/login'} onClick={handleAuthentication}>
+        <Link to={!user ? '/login' : '/'} onClick={handleAuthentication}>
           <div className="header__option">
-            <span className="header__option-line-1">Hello Guest</span>
-            <span className="header__option-line-2">Sign In</span>
+            <span className="header__option-line-1">
+              Hello {user ? getFirstName(user?.displayName) : 'Guest'}
+            </span>
+            <span className="header__option-line-2">
+              {user ? 'Sign Out' : 'Sign In'}
+            </span>
           </div>
         </Link>
         <Link to={'/orders'}>

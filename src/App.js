@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { LastLocationProvider } from 'react-router-last-location';
 import { ToastContainer } from 'react-toastify';
@@ -20,13 +20,34 @@ const promise = loadStripe(
 );
 
 function App() {
-  const [{ toast }, dispatch] = useStateValue();
+  const [{ toast, user }, dispatch] = useStateValue();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       dispatch({ type: 'SET_USER', user: authUser || null });
     });
   }, [dispatch]);
+
+  const PrivateRoute = ({ component: Component }) => {
+    return (
+      <Route
+        render={(props) => {
+          let comp = <Login {...props} />;
+
+          if (user) {
+            comp = <Component {...props} />;
+          }
+
+          return (
+            <Fragment>
+              <Header />
+              {comp}
+            </Fragment>
+          );
+        }}
+      />
+    );
+  };
 
   return (
     <Router>
@@ -40,10 +61,7 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
-            <Route path="/orders">
-              <Header />
-              <Orders />
-            </Route>
+            <PrivateRoute path="/orders" component={Orders} />
             <Route path="/checkout">
               <Header />
               <Checkout />

@@ -5,7 +5,7 @@ import { auth } from '../firebase';
 import { authInputs } from '../utils/constants';
 import './Login.css';
 
-function Login() {
+function Login({ location }) {
   const [{ email, password }, setState] = useState({
     authInputs,
   });
@@ -21,9 +21,7 @@ function Login() {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        lastLocation.pathname === '/payment'
-          ? history.push('/payment')
-          : history.push('/');
+        history.push(`${lastLocation.pathname || '/'}`);
       })
       .catch((err) => alert(err.message));
   };

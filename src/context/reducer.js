@@ -3,6 +3,7 @@ export const initialState = {
   user: null,
   notifications: [],
   toast: true,
+  history: null,
 };
 
 export const reducer = (state, action) => {
@@ -45,6 +46,12 @@ export const reducer = (state, action) => {
       return {
         ...state,
         toast: action.notify,
+      };
+
+    case 'SET_HISTORY':
+      return {
+        ...state,
+        history: action.history,
       };
 
     default:
