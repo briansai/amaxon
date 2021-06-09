@@ -10,50 +10,52 @@ function Home() {
     <div className="home">
       <div className="home__container">
         <ImageGallery />
-        <div className="home__row">
-          {topData.map((product, index) => {
-            const { id, title, price, image, rating } = product;
-            return (
-              <Product
-                key={`${id}-${index}`}
-                id={id}
-                title={title}
-                price={price}
-                image={image}
-                rating={rating}
-              />
-            );
-          })}
-        </div>
-        <div className="home__row">
-          {midData.map((product, index) => {
-            const { id, title, price, image, rating } = product;
-            return (
-              <Product
-                key={`${id}-${index}`}
-                id={id}
-                title={title}
-                price={price}
-                image={image}
-                rating={rating}
-              />
-            );
-          })}
-        </div>
-        <div className="home__row">
-          {botData.map((product, index) => {
-            const { id, title, price, image, rating } = product;
-            return (
-              <Product
-                key={`${id}-${index}`}
-                id={id}
-                title={title}
-                price={price}
-                image={image}
-                rating={rating}
-              />
-            );
-          })}
+        <div className="home__rows">
+          <div className="home__row">
+            {topData.map((product, index) => {
+              const { id, title, price, image, rating } = product;
+              return (
+                <Product
+                  key={`${id}-${index}`}
+                  id={id}
+                  title={title}
+                  price={price}
+                  image={image}
+                  rating={rating}
+                />
+              );
+            })}
+          </div>
+          <div className="home__row">
+            {midData.map((product, index) => {
+              const { id, title, price, image, rating } = product;
+              return (
+                <Product
+                  key={`${id}-${index}`}
+                  id={id}
+                  title={title}
+                  price={price}
+                  image={image}
+                  rating={rating}
+                />
+              );
+            })}
+          </div>
+          <div className="home__row">
+            {botData.map((product, index) => {
+              const { id, title, price, image, rating } = product;
+              return (
+                <Product
+                  key={`${id}-${index}`}
+                  id={id}
+                  title={title}
+                  price={price}
+                  image={image}
+                  rating={rating}
+                />
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
