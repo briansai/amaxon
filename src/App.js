@@ -1,6 +1,9 @@
 import { useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { auth } from './firebase';
 import { LastLocationProvider } from 'react-router-last-location';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 import { ToastContainer } from 'react-toastify';
 import Header from './components/Header';
 import Home from './pages/Home';
@@ -9,11 +12,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Payment from './pages/Payment';
 import Orders from './pages/Orders';
-import './App.css';
-import { auth } from './firebase';
 import { useStateValue } from './context/StateProvider';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
+import './App.css';
 
 const promise = loadStripe(
   'pk_test_51HK9XLAuR811nlCyvEmZhSEIZHFdNeAk6XMcbcJTGHmLANUaKDiyQKvMJA4ARFmtOIoA3dMlIDWTymMqUQHJfJbM00nzbJ7xdP'

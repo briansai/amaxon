@@ -36,8 +36,6 @@ function ImageGallery() {
         className="image__photo"
         src={homeImages[currentIndex].link}
         alt=""
-        width="1500"
-        height="600"
       />
       <div className="image__arrow-right">
         <Button onClick={(e) => handleDirection(e, 'next')}>

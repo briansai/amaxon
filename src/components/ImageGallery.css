@@ -5,6 +5,12 @@
   position: relative;
 }
 
+.image__photo {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
 .image__arrow-left {
   position: absolute;
   top: 18%;
