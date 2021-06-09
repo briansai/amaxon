@@ -9,7 +9,7 @@ function Checkout() {
   const [{ cart, user }] = useStateValue();
   return (
     <div className="checkout">
-      <div className="checkout__left">
+      <div className="checkout__cart">
         <img
           className="checkout__ad"
           src="https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg"
@@ -29,7 +29,7 @@ function Checkout() {
           ))}
         </div>
       </div>
-      <div className="checkout__right">
+      <div className="checkout__subtotal">
         <Subtotal />
       </div>
     </div>

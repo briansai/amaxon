@@ -16,9 +16,16 @@
   border-bottom: 1px solid lightgray;
 }
 
-.checkout__right {
+.checkout__subtotal {
   position: -webkit-sticky;
   position: sticky;
   top: 10%;
   align-self: flex-start;
+}
+
+@media only screen and (max-width: 768px) {
+  .checkout {
+    flex-direction: column;
+    /* min-width: 770px; */
+  }
 }

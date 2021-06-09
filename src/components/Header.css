@@ -1,6 +1,5 @@
 .header {
   height: 60px;
-  min-width: 750px;
   display: flex;
   align-items: center;
   background-color: #131921;
@@ -18,7 +17,6 @@
 .header__search {
   display: flex;
   flex: 1;
-  min-width: 300px;
   align-items: center;
   border-radius: 24px;
 }
