@@ -2,6 +2,10 @@
   background-color: #ffffff;
 }
 
+.payment__container {
+  min-height: 92vh;
+}
+
 .payment__container > h1 {
   text-align: center;
   padding: 10px;
@@ -61,6 +65,12 @@
 
 .payment__form > .disabled {
   background-color: lightgray;
+  border-color: lightgray;
+  color: gray;
+}
+
+.payment__form > .disabled:hover {
+  cursor: default;
 }
 
 .payment__stripe,
@@ -68,4 +78,8 @@
   border: 0.5px solid lightgray;
   border-radius: 0.5rem;
   min-width: 358px;
+}
+
+.payment__stripe {
+  padding: 10px;
 }

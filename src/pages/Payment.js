@@ -46,7 +46,7 @@ function Payment() {
             },
           })
           .then((confirmation) => {
-            const { id, amount, created } = confirmation.paymentIntent;
+            const { id, amount, created } = confirmation?.paymentIntent;
             db.collection('users')
               .doc(user?.uid)
               .collection('orders')
@@ -83,7 +83,7 @@ function Payment() {
             <h3>Deliver Address</h3>
           </div>
           <div className="payment__address">
-            <p>{user?.email}</p>
+            <p>{user?.displayName}</p>
             <p>123 Potato Lane</p>
             <p>Los Angeles, CA</p>
           </div>
@@ -114,8 +114,8 @@ function Payment() {
             </div>
             <form className="payment__form" onSubmit={handleSubmit}>
               <button
-                disabled={processing || disabled || succeeded || !cart.length}
-                className={processing ? 'disabled' : null}
+                disabled={!cart.length || processing || disabled || succeeded}
+                className={!cart.length || processing ? 'disabled' : null}
               >
                 {processing ? 'Payment Processing' : 'Place Your Order'}
               </button>

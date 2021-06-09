@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { useLastLocation } from 'react-router-last-location';
 import { auth } from '../firebase';
 import { authInputs } from '../utils/constants';
 import './Login.css';
@@ -10,7 +9,6 @@ function Login({ location }) {
     authInputs,
   });
   const history = useHistory();
-  const lastLocation = useLastLocation();
   const handleInput = (e) => {
     const { name, value } = e.target;
     setState((prevState) => ({ ...prevState, [name]: value }));
@@ -21,7 +19,7 @@ function Login({ location }) {
     auth
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        history.push(`${lastLocation.pathname || '/'}`);
+        history.push(`${location?.pathname || '/'}`);
       })
       .catch((err) => alert(err.message));
   };

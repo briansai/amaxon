@@ -7,8 +7,11 @@
 
 .order-header__left {
   display: flex;
-  justify-content: space-between;
   width: 50%;
+}
+
+.order-header__left > div {
+  margin-right: 50px;
 }
 
 .order-header__right {

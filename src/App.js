@@ -28,26 +28,35 @@ function App() {
     });
   }, [dispatch]);
 
-  const PrivateRoute = ({ component: Component }) => {
-    return (
-      <Route
-        render={(props) => {
-          let comp = <Login {...props} />;
+  const PrivateRoute = () => (
+    <Route
+      render={(props) => {
+        if (user) {
+          const key = props.location?.pathname.slice(1);
+          const paths = {
+            orders: (
+              <Fragment>
+                <Header />
+                <Orders />
+              </Fragment>
+            ),
+            payment: (
+              <Fragment>
+                <Header />
+                <Elements stripe={promise}>
+                  <Payment />
+                </Elements>
+              </Fragment>
+            ),
+          };
 
-          if (user) {
-            comp = <Component {...props} />;
-          }
+          return paths[key];
+        }
 
-          return (
-            <Fragment>
-              <Header />
-              {comp}
-            </Fragment>
-          );
-        }}
-      />
-    );
-  };
+        return <Login {...props} />;
+      }}
+    />
+  );
 
   return (
     <Router>
@@ -61,17 +70,12 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
-            <PrivateRoute path="/orders" component={Orders} />
+            <PrivateRoute path="/orders" />
             <Route path="/checkout">
               <Header />
               <Checkout />
             </Route>
-            <Route path="/payment">
-              <Header />
-              <Elements stripe={promise}>
-                <Payment />
-              </Elements>
-            </Route>
+            <PrivateRoute path="/payment" />
             <Route exact path="/">
               <Header />
               <Home />
