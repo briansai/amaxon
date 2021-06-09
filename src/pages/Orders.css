@@ -1,7 +1,8 @@
 .orders {
   padding: 20px 80px;
-  width: 920px;
   margin: 0 auto;
+  min-width: 600px;
+  max-width: 920px;
 }
 
 .orders__title {
