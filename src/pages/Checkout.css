@@ -26,6 +26,18 @@
 @media only screen and (max-width: 768px) {
   .checkout {
     flex-direction: column;
-    /* min-width: 770px; */
+  }
+
+  .checkout__subtotal {
+    align-self: auto;
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (max-width: 568px) {
+  .checkout__title {
+    text-align: center;
+    margin-right: 0;
+    font-size: 1.17em;
   }
 }

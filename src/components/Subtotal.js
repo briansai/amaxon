@@ -17,7 +17,7 @@ function Subtotal() {
     <div className="subtotal">
       <CurrencyFormat
         renderText={(value) => (
-          <Fragment>
+          <div className="subtotal__text">
             <p>
               Subtotal ({cart.length} items):
               <strong>{`${value}`}</strong>
@@ -25,7 +25,7 @@ function Subtotal() {
             <small className="subtotal__gift">
               <input type="checkbox" /> This order contains a gift
             </small>
-          </Fragment>
+          </div>
         )}
         decimalScale={2}
         value={getCartTotal(cart)}
