@@ -8,6 +8,10 @@
   z-index: 100;
 }
 
+.header__menu {
+  display: none;
+}
+
 .header__logo {
   width: 100px;
   object-fit: contain;
@@ -68,4 +72,15 @@
 .header__option-line-2 {
   font-size: 13px;
   font-weight: 800;
+}
+
+/* X-Small Screens */
+@media only screen and (max-width: 768px) {
+  .header__option {
+    display: none;
+  }
+
+  .header__menu {
+    display: block;
+  }
 }

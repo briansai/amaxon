@@ -1,7 +1,9 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import MenuIcon from '@material-ui/icons/Menu';
 import useClickOutside from 'use-click-outside';
 import { useStateValue } from '../context/StateProvider';
 import HeaderDropdown from './HeaderDropdown';
@@ -63,6 +65,12 @@ function Header() {
           </div>
           {dropdown ? <HeaderDropdown setDropdown={setDropdown} /> : null}
         </div>
+        <div className="header__menu">
+          <Button>
+            <MenuIcon style={{ color: '#fafafa' }} />
+          </Button>
+        </div>
+
         <Link to="/checkout">
           <div className="header__option-cart">
             <ShoppingCartIcon />
