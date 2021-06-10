@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import CancelOutlinedIcon from '@material-ui/icons/CancelOutlined';
 import { red } from '@material-ui/core/colors';
@@ -10,7 +10,6 @@ import './Orders.css';
 function Orders() {
   const [{ user }] = useStateValue();
   const [orders, setOrders] = useState([]);
-  const mountedRef = useRef(true);
 
   useEffect(() => {
     user
@@ -28,10 +27,6 @@ function Orders() {
             );
           })
       : setOrders([]);
-
-    return () => {
-      mountedRef.current = false;
-    };
   }, [user]);
 
   return (
@@ -43,8 +38,8 @@ function Orders() {
             <Order order={order} key={`${order.id}-${index}`} />
           ))
         ) : (
-          <div>
-            <div className="orders__empty">
+          <div className="orders__empty">
+            <div className="orders__empty-container">
               <AssignmentIcon
                 className="orders__empty-clipboard"
                 style={{ fontSize: 200 }}

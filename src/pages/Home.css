@@ -51,16 +51,12 @@
   .home__rows {
     top: 130px;
   }
-
-  .home__row {
-    flex-wrap: wrap;
-  }
 }
 
 /* X-Small Screens */
 @media only screen and (max-width: 576px) {
   .home__rows {
-    top: 90px;
+    top: 120px;
   }
 
   .home__row {

@@ -5,16 +5,16 @@
   text-transform: uppercase;
 }
 
-.order-header__left {
+.order-header__detail {
   display: flex;
   width: 50%;
 }
 
-.order-header__left > div {
+.order-header__detail > div {
   margin-right: 50px;
 }
 
-.order-header__right {
+.order-header__number {
   width: 50%;
   display: flex;
   justify-content: flex-end;
@@ -27,4 +27,34 @@
 
 .order-header__content {
   font-size: 14px;
+}
+
+@media only screen and (max-width: 576px) {
+  .order-header {
+    padding: 20px;
+    flex-direction: column;
+  }
+
+  .order-header__detail {
+    justify-content: space-between;
+    width: auto;
+    margin-bottom: 10px;
+  }
+
+  .order-header__detail > div {
+    margin-right: 0;
+  }
+
+  .order-header__text {
+    font-size: 11px;
+  }
+
+  .order-header__content {
+    font-size: 14px;
+  }
+
+  .order-header__number {
+    width: auto;
+    justify-content: left;
+  }
 }

@@ -7,7 +7,7 @@ function OrderHeader({ id, data }) {
   const { created, amount } = data;
   return (
     <div className="order-header">
-      <div className="order-header__left">
+      <div className="order-header__detail">
         <div className="order-header__date">
           <div className="order-header__text">Order Placed</div>
           <p className="order-header__content">
@@ -28,7 +28,7 @@ function OrderHeader({ id, data }) {
           </div>
         </div>
       </div>
-      <div className="order-header__right">
+      <div className="order-header__number">
         <p className="order-header__id">
           <small className="order-header__text">Order#: {id}</small>
         </p>
