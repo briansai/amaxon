@@ -44,18 +44,18 @@
 
 .payment__form {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 20px;
 }
 
 .payment__form > button {
   background: #f0c14b;
   border: 1px solid;
-  margin-right: 20px;
   border-color: #a88734 #9c7e31 #846a29;
   color: #111;
   height: 30px;
-  width: 150px;
-  border-radius: 0.5rem;
+  width: 50%;
 }
 
 .payment__form > button:active {
@@ -77,9 +77,36 @@
 .payment__form {
   border: 0.5px solid lightgray;
   border-radius: 0.5rem;
-  min-width: 358px;
 }
 
 .payment__stripe {
   padding: 10px;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  .payment__form > button {
+    width: 40%;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .payment__section {
+    flex-direction: column;
+  }
+
+  .payment__title {
+    text-align: center;
+    padding-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .payment__form {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .payment__form > button {
+    margin-top: 10px;
+    width: auto;
+  }
 }

@@ -113,12 +113,6 @@ function Payment() {
               ))}
             </div>
             <form className="payment__form" onSubmit={handleSubmit}>
-              <button
-                disabled={!cart.length || processing || disabled || succeeded}
-                className={!cart.length || processing ? 'disabled' : null}
-              >
-                {processing ? 'Payment Processing' : 'Place Your Order'}
-              </button>
               <CurrencyFormat
                 renderText={(value) => <h3>Order Total: {value} </h3>}
                 decimalScale={2}
@@ -128,6 +122,12 @@ function Payment() {
                 prefix={'$'}
                 className="payment__total"
               />
+              <button
+                disabled={!cart.length || processing || disabled || succeeded}
+                className={!cart.length || processing ? 'disabled' : null}
+              >
+                {processing ? 'Payment Processing' : 'Place Your Order'}
+              </button>
               {err && <div>{err}</div>}
             </form>
           </div>
