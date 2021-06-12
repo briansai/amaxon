@@ -47,9 +47,13 @@
 }
 
 /* Small Screens */
-@media only screen and (min-width: 576px) and (max-width: 768px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .home__rows {
     top: 130px;
+  }
+
+  .home__row {
+    flex-wrap: wrap;
   }
 }
 

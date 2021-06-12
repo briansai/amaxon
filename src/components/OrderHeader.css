@@ -29,7 +29,7 @@
   font-size: 14px;
 }
 
-@media only screen and (max-width: 576px) {
+@media only screen and (max-width: 768px) {
   .order-header {
     padding: 20px;
     flex-direction: column;

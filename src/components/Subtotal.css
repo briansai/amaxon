@@ -13,6 +13,7 @@
 .subtotal__gift {
   display: flex;
   align-items: center;
+  margin-top: 10px;
 }
 
 .subtotal__gift > input {
@@ -53,14 +54,11 @@
   }
 }
 
-@media only screen and (min-width: 576px) and (max-width: 768px) {
+@media only screen and (min-width: 576px) and (max-width: 767px) {
   .subtotal {
     flex-direction: row;
     height: auto;
-  }
-
-  .subtotal__gift {
-    margin-top: 5px;
+    width: auto;
   }
 }
 

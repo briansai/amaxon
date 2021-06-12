@@ -19,12 +19,6 @@
   height: 70vh;
 }
 
-.orders__empty-container {
-  /* position: absolute;
-  transform: translate(120%, 40%);
-  text-align: center; */
-}
-
 .orders__empty-x {
   position: absolute;
   z-index: 1;
