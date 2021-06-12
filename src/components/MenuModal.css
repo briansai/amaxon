@@ -1,0 +1,22 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.modal__content {
+  width: auto;
+  margin: 20px;
+  color: white;
+  overflow: hidden;
+  font-size: 2rem;
+}

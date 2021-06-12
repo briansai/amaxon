@@ -1,11 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Sling as Hamburger } from 'hamburger-react';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import MenuIcon from '@material-ui/icons/Menu';
 import useClickOutside from 'use-click-outside';
 import { useStateValue } from '../context/StateProvider';
+import MenuModal from './MenuModal';
 import HeaderDropdown from './HeaderDropdown';
 import './Header.css';
 import { auth } from '../firebase';
@@ -14,6 +14,7 @@ import { getFirstName } from '../utils/functions';
 function Header() {
   const [{ cart, user }] = useStateValue();
   const [dropdown, setDropdown] = useState(false);
+  const [burgerOpen, setBurgerOpen] = useState(false);
   const settingsRef = useRef();
   const handleAuthentication = () => {
     user && auth.signOut();
@@ -65,11 +66,6 @@ function Header() {
           </div>
           {dropdown ? <HeaderDropdown setDropdown={setDropdown} /> : null}
         </div>
-        <div className="header__menu">
-          <Button>
-            <MenuIcon style={{ color: '#fafafa' }} />
-          </Button>
-        </div>
 
         <Link to="/checkout">
           <div className="header__option-cart">
@@ -79,6 +75,15 @@ function Header() {
             </span>
           </div>
         </Link>
+        <div className="header__menu">
+          <Hamburger
+            toggled={burgerOpen}
+            toggle={setBurgerOpen}
+            color="white"
+            size={18}
+          />
+        </div>
+        {burgerOpen && <MenuModal burgerOpen={burgerOpen} />}
       </div>
     </div>
   );

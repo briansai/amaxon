@@ -18,6 +18,7 @@
 .home__rows {
   position: absolute;
   top: 250px;
+  z-index: -1;
 }
 
 .home__row {
