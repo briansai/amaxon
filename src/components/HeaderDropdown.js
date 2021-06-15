@@ -3,8 +3,8 @@ import { useStateValue } from '../context/StateProvider';
 import './HeaderDropdown.css';
 
 function HeaderDropdown({ setDropdown }) {
-  const [{ toast }, dispatch] = useStateValue();
-  const [notify, setNotify] = useState(toast);
+  const [{ toastNotify }, dispatch] = useStateValue();
+  const [notify, setNotify] = useState(toastNotify);
   const handleCheckBox = () => {
     setNotify(!notify);
   };

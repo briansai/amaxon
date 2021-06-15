@@ -11,13 +11,14 @@ import CloseIcon from '@material-ui/icons/Close';
 import { useStateValue } from '../context/StateProvider';
 
 function Settings() {
-  const [{ toast }, dispatch] = useStateValue();
-  const [notify, setNotify] = useState(toast);
+  const [{ toastNotify }, dispatch] = useStateValue();
+  const [notify, setNotify] = useState(toastNotify);
   const saveSettings = (e) => {
     e.preventDefault();
+
     dispatch({
       type: 'SET_NOTIFICATIONS',
-      toast: notify,
+      notify,
     });
     dispatch({
       type: 'SET_SETTINGS_OPEN',

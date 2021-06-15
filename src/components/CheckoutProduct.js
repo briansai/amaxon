@@ -17,7 +17,7 @@ const Toast = ({ item, type }) => {
 };
 
 function CheckoutProduct({ item, hideButton }) {
-  const [, dispatch] = useStateValue();
+  const [{ toastNotify }, dispatch] = useStateValue();
   const { id, title, price, rating, image } = item;
 
   const removeItem = (e) => {
@@ -27,16 +27,17 @@ function CheckoutProduct({ item, hideButton }) {
       id,
     });
 
-    toast(<Toast item={title} type="removeToast" />, {
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      className: 'product__toast',
-      transition: Slide,
-    });
+    toastNotify &&
+      toast(<Toast item={title} type="removeToast" />, {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        className: 'product__toast',
+        transition: Slide,
+      });
   };
 
   return (

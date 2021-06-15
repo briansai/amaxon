@@ -2,7 +2,7 @@ export const initialState = {
   cart: [],
   user: null,
   notifications: [],
-  toast: true,
+  toastNotify: true,
   history: null,
   burgerOpen: false,
   settingsOpen: false,
@@ -47,7 +47,7 @@ export const reducer = (state, action) => {
     case 'SET_NOTIFICATIONS':
       return {
         ...state,
-        toast: action.notify,
+        toastNotify: action.notify,
       };
 
     case 'SET_HISTORY':

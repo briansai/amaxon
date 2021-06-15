@@ -20,7 +20,7 @@ const promise = loadStripe(
 );
 
 function App() {
-  const [{ toast, user }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
@@ -62,7 +62,7 @@ function App() {
     <Router>
       <LastLocationProvider>
         <div className="app">
-          {toast && <ToastContainer className="home__toast-container" />}
+          <ToastContainer className="home__toast-container" />
           <Switch>
             <Route path="/login">
               <Login />

@@ -17,7 +17,8 @@ const Toast = ({ item, type }) => {
 };
 
 function Product({ product }) {
-  const [, dispatch] = useStateValue();
+  const [{ toastNotify }, dispatch] = useStateValue();
+  console.log(toastNotify);
   const { id, title, image, price, rating } = product;
   const addToCart = () => {
     dispatch({
@@ -30,16 +31,18 @@ function Product({ product }) {
         rating,
       },
     });
-    toast(<Toast item={title} type="addToast" />, {
-      position: 'top-right',
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      className: 'product__toast',
-      transition: Slide,
-    });
+
+    toastNotify &&
+      toast(<Toast item={title} type="addToast" />, {
+        position: 'top-right',
+        autoClose: 2000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        className: 'product__toast',
+        transition: Slide,
+      });
   };
 
   return (
