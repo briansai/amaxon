@@ -25,7 +25,7 @@ function HeaderDropdown({ setDropdown }) {
       <div className="header-dropdown__header">
         <h3 className="header-dropdown__header-title">Settings</h3>
         <div className="header-dropdown__header-close">
-          <button onClick={() => setDropdown(false)}>x</button>
+          <button onClick={() => setDropdown(false)}>X</button>
         </div>
       </div>
       <div className="header-dropdown__arrow">

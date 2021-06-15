@@ -1,13 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ScrollLock from 'react-scrolllock';
-import Settings from './Settings';
 import { useStateValue } from '../context/StateProvider';
 import { handleAuthentication } from '../utils/functions';
+import Drawer from '@material-ui/core/Drawer';
+import Settings from './Settings';
 import './MenuModal.css';
 
 function MenuModal() {
   const [{ user, burgerOpen, settingsOpen }, dispatch] = useStateValue();
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+    dispatch({
+      type: 'SET_SETTINGS_OPEN',
+      settingsOpen: open,
+    });
+  };
 
   return (
     <div className="modal">
@@ -26,29 +40,23 @@ function MenuModal() {
         </Link>
         <Link
           to="/orders"
-          onClick={() =>
+          onClick={() => {
             dispatch({
               type: 'SET_BURGER_OPEN',
               burgerOpen: false,
-            })
-          }
+            });
+          }}
         >
           <div className="modal__content">Returns & Orders</div>
         </Link>
-        <div
-          className="modal__content"
-          onClick={() =>
-            dispatch({
-              type: 'SET_SETTINGS_OPEN',
-              settingsOpen: true,
-            })
-          }
-        >
+        <div className="modal__content" onClick={toggleDrawer(true)}>
           Manage Settings
         </div>
       </div>
-      {settingsOpen && <Settings />}
 
+      <Drawer anchor={'bottom'} open={settingsOpen}>
+        <Settings />
+      </Drawer>
       <ScrollLock isActive={burgerOpen} />
     </div>
   );

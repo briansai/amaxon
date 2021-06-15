@@ -6,7 +6,6 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import useClickOutside from 'use-click-outside';
 import { useStateValue } from '../context/StateProvider';
 import MenuModal from './MenuModal';
-
 import HeaderDropdown from './HeaderDropdown';
 import { handleAuthentication, getFirstName } from '../utils/functions';
 import './Header.css';
