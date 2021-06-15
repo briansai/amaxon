@@ -5,7 +5,9 @@ import {
   ListItem,
   ListItemText,
   Button,
+  Typography,
 } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import { useStateValue } from '../context/StateProvider';
 
 function Settings() {
@@ -36,7 +38,7 @@ function Settings() {
             padding: '10px 20px',
           }}
         >
-          <div>Settings</div>
+          <Typography variant="h5">Settings</Typography>
           <button
             style={{ width: '95%', height: '10%', textAlign: 'right' }}
             className="settings__close"
@@ -47,7 +49,7 @@ function Settings() {
               });
             }}
           >
-            X
+            <CloseIcon />
           </button>
         </div>
         {['Enable Notifications'].map((text, index) => (

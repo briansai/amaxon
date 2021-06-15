@@ -12,15 +12,8 @@
   overflow: hidden;
 }
 
-.modal:active {
-  animation: modalClosed 0.5s linear;
-}
-
 .modal__container {
-  position: absolute;
-  display: block;
-  top: 100px;
-  left: 25px;
+  margin: 50px auto;
 }
 
 .modal__content {
