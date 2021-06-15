@@ -4,6 +4,8 @@ export const initialState = {
   notifications: [],
   toast: true,
   history: null,
+  burgerOpen: false,
+  settingsOpen: false,
 };
 
 export const reducer = (state, action) => {
@@ -52,6 +54,18 @@ export const reducer = (state, action) => {
       return {
         ...state,
         history: action.history,
+      };
+
+    case 'SET_BURGER_OPEN':
+      return {
+        ...state,
+        burgerOpen: action.burgerOpen,
+      };
+
+    case 'SET_SETTINGS_OPEN':
+      return {
+        ...state,
+        settingsOpen: action.settingsOpen,
       };
 
     default:

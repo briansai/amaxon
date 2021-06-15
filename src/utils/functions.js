@@ -1,3 +1,4 @@
+import { auth } from '../firebase';
 export const getCartTotal = (cart) => {
   return cart?.reduce((acc, cur) => cur.price + acc, 0);
 };
@@ -18,4 +19,8 @@ export const displayStars = (rating) => {
       ★
     </div>
   ));
+};
+
+export const handleAuthentication = (user) => {
+  user && auth.signOut();
 };

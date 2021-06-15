@@ -1,0 +1,12 @@
+.settings {
+  z-index: 10;
+  height: 100%;
+  background-color: white;
+  width: 100%;
+}
+
+.settings__close {
+  width: 90%;
+  height: 10%;
+  text-align: right;
+}

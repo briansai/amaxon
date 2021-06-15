@@ -6,20 +6,15 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import useClickOutside from 'use-click-outside';
 import { useStateValue } from '../context/StateProvider';
 import MenuModal from './MenuModal';
+
 import HeaderDropdown from './HeaderDropdown';
+import { handleAuthentication, getFirstName } from '../utils/functions';
 import './Header.css';
-import { auth } from '../firebase';
-import { getFirstName } from '../utils/functions';
 
 function Header() {
-  const [{ cart, user }] = useStateValue();
+  const [{ cart, user, burgerOpen, settingsOpen }, dispatch] = useStateValue();
   const [dropdown, setDropdown] = useState(false);
-  const [burgerOpen, setBurgerOpen] = useState(false);
   const settingsRef = useRef();
-  const handleAuthentication = () => {
-    user && auth.signOut();
-  };
-
   const exitClick = () => {
     dropdown && setDropdown(false);
   };
@@ -40,7 +35,10 @@ function Header() {
         <SearchIcon className="header__search-icon" />
       </div>
       <div className="header__nav">
-        <Link to={!user ? '/login' : '/'} onClick={handleAuthentication}>
+        <Link
+          to={!user ? '/login' : '/'}
+          onClick={() => handleAuthentication(user)}
+        >
           <div className="header__option">
             <span className="header__option-line-1">
               Hello {user ? getFirstName(user?.displayName) : 'Guest'}
@@ -75,15 +73,20 @@ function Header() {
             </span>
           </div>
         </Link>
-        <div className="header__menu">
+        <div className={`${!settingsOpen ? 'header__menu' : null}`}>
           <Hamburger
             toggled={burgerOpen}
-            toggle={setBurgerOpen}
+            toggle={() => {
+              dispatch({
+                type: 'SET_BURGER_OPEN',
+                burgerOpen: !burgerOpen,
+              });
+            }}
             color="white"
             size={18}
           />
         </div>
-        {burgerOpen && <MenuModal burgerOpen={burgerOpen} />}
+        {burgerOpen && <MenuModal />}
       </div>
     </div>
   );

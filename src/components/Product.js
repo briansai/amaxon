@@ -16,8 +16,9 @@ const Toast = ({ item, type }) => {
   );
 };
 
-function Product({ id, title, image, price, rating }) {
+function Product({ product }) {
   const [, dispatch] = useStateValue();
+  const { id, title, image, price, rating } = product;
   const addToCart = () => {
     dispatch({
       type: 'ADD_TO_CART',

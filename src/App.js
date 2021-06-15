@@ -6,7 +6,6 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import { ToastContainer } from 'react-toastify';
 import Header from './components/Header';
-import MenuModal from './components/MenuModal';
 import Home from './pages/Home';
 import Checkout from './pages/Checkout';
 import Login from './pages/Login';

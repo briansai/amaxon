@@ -18,12 +18,11 @@
 .home__rows {
   position: absolute;
   top: 250px;
-  z-index: -1;
 }
 
 .home__row {
   display: flex;
-  z-index: 1;
+  z-index: 0;
   margin: 0 5px;
 }
 
@@ -61,7 +60,11 @@
 /* X-Small Screens */
 @media only screen and (max-width: 576px) {
   .home__rows {
-    top: 120px;
+    top: 80px;
+  }
+
+  .background {
+    z-index: -1;
   }
 
   .home__row {
