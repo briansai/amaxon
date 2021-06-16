@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import CurrencyFormat from 'react-currency-format';
 import { useHistory } from 'react-router-dom';
 import { useStateValue } from '../context/StateProvider';

@@ -18,7 +18,6 @@ const Toast = ({ item, type }) => {
 
 function Product({ product }) {
   const [{ toastNotify }, dispatch] = useStateValue();
-  console.log(toastNotify);
   const { id, title, image, price, rating } = product;
   const addToCart = () => {
     dispatch({

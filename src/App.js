@@ -1,10 +1,10 @@
-import { useEffect, Fragment } from 'react';
+import { useEffect, useState, useRef, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { auth } from './firebase';
+import { ToastContainer } from 'react-toastify';
 import { LastLocationProvider } from 'react-router-last-location';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-import { ToastContainer } from 'react-toastify';
+import { auth } from './firebase';
 import Header from './components/Header';
 import Home from './pages/Home';
 import Checkout from './pages/Checkout';
@@ -21,10 +21,27 @@ const promise = loadStripe(
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
+  const [headerInView, setHeaderInView] = useState(true);
+  const ref = useRef(null);
 
   useEffect(() => {
     auth.onAuthStateChanged((authUser) => {
       dispatch({ type: 'SET_USER', user: authUser || null });
+    });
+
+    // checks if header is in view
+    function isInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return rect.bottom > 0;
+    }
+
+    const header = document.querySelector('.header');
+
+    document.addEventListener('scroll', function () {
+      const view = isInViewport(header);
+      if (headerInView !== view) {
+        setHeaderInView(view);
+      }
     });
   }, [dispatch]);
 
@@ -62,7 +79,9 @@ function App() {
     <Router>
       <LastLocationProvider>
         <div className="app">
-          <ToastContainer className="home__toast-container" />
+          <ToastContainer
+            className={`${headerInView ? 'toast__header' : 'toast__no-header'}`}
+          />
           <Switch>
             <Route path="/login">
               <Login />

@@ -1,0 +1,7 @@
+.toast__header {
+  top: 8%;
+}
+
+.toast__no-header {
+  top: 0;
+}
