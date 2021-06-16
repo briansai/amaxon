@@ -36,7 +36,9 @@ function MenuModal() {
             });
           }}
         >
-          <div className="modal__content">Sign In</div>
+          <div className="modal__content">{`${
+            user ? 'Sign Out' : 'Sign In'
+          }`}</div>
         </Link>
         <Link
           to="/orders"

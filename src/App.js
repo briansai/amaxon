@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, Fragment } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -22,28 +22,28 @@ const promise = loadStripe(
 function App() {
   const [{ user }, dispatch] = useStateValue();
   const [headerInView, setHeaderInView] = useState(true);
-  const ref = useRef(null);
 
   useEffect(() => {
-    auth.onAuthStateChanged((authUser) => {
-      dispatch({ type: 'SET_USER', user: authUser || null });
-    });
+    !user &&
+      auth.onAuthStateChanged((authUser) => {
+        dispatch({ type: 'SET_USER', user: authUser || null });
+      });
 
-    // checks if header is in view
-    function isInViewport(el) {
-      const rect = el.getBoundingClientRect();
-      return rect.bottom > 0;
-    }
+    //   // checks if header is in view
+    //   function isInViewport(el) {
+    //     const rect = el.getBoundingClientRect();
+    //     return rect.bottom > 0;
+    //   }
 
-    const header = document.querySelector('.header');
+    //   const header = document.querySelector('.header');
 
-    document.addEventListener('scroll', function () {
-      const view = isInViewport(header);
-      if (headerInView !== view) {
-        setHeaderInView(view);
-      }
-    });
-  }, [dispatch]);
+    //   document.addEventListener('scroll', function () {
+    //     const view = isInViewport(header);
+    //     if (headerInView !== view) {
+    //       setHeaderInView(view);
+    //     }
+    //   });
+  }, [headerInView, user, dispatch]);
 
   const PrivateRoute = () => (
     <Route

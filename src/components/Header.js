@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Sling as Hamburger } from 'hamburger-react';
 import SearchIcon from '@material-ui/icons/Search';

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { useStateValue } from '../context/StateProvider';
 import Product from '../components/Product';
@@ -8,6 +8,7 @@ import './Home.css';
 
 function Home() {
   const [{ burgerOpen }] = useStateValue();
+
   return (
     <div className="home">
       <div className="home__container">
