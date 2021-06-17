@@ -1,4 +1,4 @@
-import { useEffect, useState, Fragment } from 'react';
+import { useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -21,67 +21,45 @@ const promise = loadStripe(
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
-  const [headerInView, setHeaderInView] = useState(true);
 
   useEffect(() => {
     !user &&
       auth.onAuthStateChanged((authUser) => {
         dispatch({ type: 'SET_USER', user: authUser || null });
       });
+  }, [user, dispatch]);
 
-    //   // checks if header is in view
-    //   function isInViewport(el) {
-    //     const rect = el.getBoundingClientRect();
-    //     return rect.bottom > 0;
-    //   }
+  const PrivateRoute = (props) => {
+    if (user) {
+      const key = props.location?.pathname.slice(1);
+      const paths = {
+        orders: (
+          <Fragment>
+            <Header />
+            <Orders />
+          </Fragment>
+        ),
+        payment: (
+          <Fragment>
+            <Header />
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          </Fragment>
+        ),
+      };
 
-    //   const header = document.querySelector('.header');
+      return paths[key];
+    }
 
-    //   document.addEventListener('scroll', function () {
-    //     const view = isInViewport(header);
-    //     if (headerInView !== view) {
-    //       setHeaderInView(view);
-    //     }
-    //   });
-  }, [headerInView, user, dispatch]);
-
-  const PrivateRoute = () => (
-    <Route
-      render={(props) => {
-        if (user) {
-          const key = props.location?.pathname.slice(1);
-          const paths = {
-            orders: (
-              <Fragment>
-                <Header />
-                <Orders />
-              </Fragment>
-            ),
-            payment: (
-              <Fragment>
-                <Header />
-                <Elements stripe={promise}>
-                  <Payment />
-                </Elements>
-              </Fragment>
-            ),
-          };
-
-          return paths[key];
-        }
-
-        return <Login {...props} />;
-      }}
-    />
-  );
+    return <Login {...props} />;
+  };
 
   return (
     <Router>
       <LastLocationProvider>
         <div className="app">
-          <ToastContainer
-            className={`${headerInView ? 'toast__header' : 'toast__no-header'}`}
-          />
+          <ToastContainer className="toast__header" />
           <Switch>
             <Route path="/login">
               <Login />
@@ -89,12 +67,12 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
-            <PrivateRoute path="/orders" />
+            <PrivateRoute path="/orders" component={Orders} />
             <Route path="/checkout">
               <Header />
               <Checkout />
             </Route>
-            <PrivateRoute path="/payment" />
+            <PrivateRoute path="/payment" component={Payment} />
             <Route exact path="/">
               <Header />
               <Home />

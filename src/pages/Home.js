@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import 'react-toastify/dist/ReactToastify.css';
 import { useStateValue } from '../context/StateProvider';
 import Product from '../components/Product';

@@ -12,24 +12,23 @@ function Orders() {
   const [{ user }] = useStateValue();
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState(null);
+
   useEffect(() => {
-    setLoading(true);
-    user
-      ? db
-          .collection('users')
-          .doc(user?.uid)
-          .collection('orders')
-          .orderBy('created', 'desc')
-          .onSnapshot((snapshot) => {
-            setOrders(
-              snapshot.docs.map((doc) => ({
-                id: doc.id,
-                data: doc.data(),
-              }))
-            );
-            setLoading(false);
-          })
-      : setOrders([]);
+    user &&
+      db
+        .collection('users')
+        .doc(user?.uid)
+        .collection('orders')
+        .orderBy('created', 'desc')
+        .onSnapshot((snapshot) => {
+          setOrders(
+            snapshot.docs.map((doc) => ({
+              id: doc.id,
+              data: doc.data(),
+            }))
+          );
+          setLoading(false);
+        });
   }, [user]);
 
   return (

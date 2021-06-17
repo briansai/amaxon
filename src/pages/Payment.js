@@ -15,7 +15,6 @@ import './Payment.css';
 
 function Payment() {
   const [err, setErr] = useState(null);
-  const [disabled, setDisabled] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [state, setState] = useState({
     Card: false,
@@ -81,7 +80,7 @@ function Payment() {
   };
 
   const handleChange = (e) => {
-    const { empty, error } = e;
+    const { error } = e;
 
     setErr(error?.message || '');
   };

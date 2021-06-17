@@ -2,6 +2,7 @@ export const initialState = {
   cart: [],
   user: null,
   notifications: [],
+  orders: [],
   toastNotify: true,
   history: null,
   burgerOpen: false,

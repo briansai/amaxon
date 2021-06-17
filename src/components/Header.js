@@ -14,6 +14,7 @@ function Header() {
   const [{ cart, user, burgerOpen, settingsOpen }, dispatch] = useStateValue();
   const [dropdown, setDropdown] = useState(false);
   const settingsRef = useRef();
+
   const exitClick = () => {
     dropdown && setDropdown(false);
   };
