@@ -24,6 +24,32 @@ export const authErrors = {
   password: '',
 };
 
+export const cardOptions = {
+  Card: false,
+  'MM/YY': false,
+  CVC: false,
+  ZIP: false,
+};
+
+export const cardInfo = [
+  {
+    text: 'Card',
+    num: '4242424242424242',
+  },
+  {
+    text: 'MM/YY',
+    num: '424',
+  },
+  {
+    text: 'CVC',
+    num: '242',
+  },
+  {
+    text: 'ZIP',
+    num: '42424',
+  },
+];
+
 export const homeImages = [
   {
     link: 'https://images-na.ssl-images-amazon.com/images/G/01/kindle/journeys/Y2UwYWM0MDQt/Y2UwYWM0MDQt-YzBhZjUwNjQt-w3000._CB670123750_.jpg',

@@ -40,6 +40,7 @@
   border-radius: 0.75rem;
   background-color: #404040;
   color: white;
+  margin-bottom: 0;
 }
 
 .product__price {

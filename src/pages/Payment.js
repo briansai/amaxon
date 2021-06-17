@@ -2,18 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import DoneIcon from '@material-ui/icons/Done';
 import { db } from '../firebase';
 import { useStateValue } from '../context/StateProvider';
 import CheckoutProduct from '../components/CheckoutProduct';
 import { getCartTotal } from '../utils/functions';
+import { cardInfo } from '../utils/constants';
 import buildClient from '../api/buildClient';
 import './Payment.css';
 
 function Payment() {
   const [err, setErr] = useState(null);
   const [disabled, setDisabled] = useState(false);
-  const [processing, setProcessing] = useState('');
-  const [succeeded, setSucceeded] = useState(false);
+  const [processing, setProcessing] = useState(false);
+  const [state, setState] = useState({
+    Card: false,
+    'MM/YY': false,
+    CVC: false,
+    ZIP: false,
+  });
   const [clientSecret, setClientSecret] = useState(true);
   const [{ cart, user }, dispatch] = useStateValue();
   const history = useHistory();
@@ -57,7 +66,6 @@ function Payment() {
                 created,
               });
 
-            setSucceeded(true);
             setErr(null);
             setProcessing(false);
 
@@ -66,12 +74,31 @@ function Payment() {
             });
 
             history.replace('/orders');
+          })
+          .catch(() => {
+            setProcessing(false);
           });
   };
+
   const handleChange = (e) => {
     const { empty, error } = e;
-    setDisabled(empty);
+
     setErr(error?.message || '');
+  };
+
+  const handleCopy = (text) => {
+    setState((prev) => {
+      const copied = Object.keys(prev).reduce((acc, cur) => {
+        if (cur === text) {
+          acc[cur] = true;
+        } else {
+          acc[cur] = false;
+        }
+        return acc;
+      }, {});
+
+      return copied;
+    });
   };
 
   return (
@@ -88,7 +115,6 @@ function Payment() {
             <p>Los Angeles, CA</p>
           </div>
         </div>
-
         <div className="payment__section">
           <div className="payment__title">
             <h3>Payment Method</h3>
@@ -100,6 +126,41 @@ function Payment() {
                 className="payment__form-row"
               />
             </fieldset>
+            {err && <div className="payment__error">* {err}</div>}
+            <p className="payment__stripe--text">
+              ** Stripe API does not allow for pre-defined values for the
+              following fields. Please enter the values provided. (Card number
+              must be exact)
+            </p>
+            <table className="payment__stripe--table">
+              <tbody>
+                {cardInfo.map((info, index) => {
+                  const { text, num } = info;
+                  return (
+                    <tr key={`${text}-${index}`}>
+                      <td className="payment__stripe--field">{`${text}:`}</td>
+                      <td>
+                        <span className="payment__stripe--num">{num}</span>
+                        {state[text] ? (
+                          <span className="payment__stripe--copied">
+                            Copied
+                            <DoneIcon fontSize="inherit" viewBox="0 0 20 20" />
+                          </span>
+                        ) : (
+                          <CopyToClipboard
+                            text={num}
+                            onCopy={() => handleCopy(text)}
+                            className="clipboard"
+                          >
+                            <FileCopyIcon fontSize="inherit" />
+                          </CopyToClipboard>
+                        )}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </div>
         <div className="payment__section">
@@ -123,12 +184,11 @@ function Payment() {
                 className="payment__total"
               />
               <button
-                disabled={!cart.length || processing || disabled || succeeded}
+                disabled={!cart.length || processing}
                 className={!cart.length || processing ? 'disabled' : null}
               >
                 {processing ? 'Payment Processing' : 'Place Your Order'}
               </button>
-              {err && <div>{err}</div>}
             </form>
           </div>
         </div>
