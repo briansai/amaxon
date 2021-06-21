@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -21,6 +21,7 @@ const promise = loadStripe(
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
+  const [headerInView, setHeaderInView] = useState(null);
 
   useEffect(() => {
     !user &&
@@ -29,19 +30,33 @@ function App() {
       });
   }, [user, dispatch]);
 
+  const getInView = (inView) => {
+    setHeaderInView(inView);
+  };
+
+  const setToastStyle = () => {
+    if (headerInView) {
+      return { top: '55px', transition: '0.3s ease-in-out' };
+    } else if (!headerInView) {
+      return { top: 0, transition: '0.3s ease-in-out' };
+    }
+
+    return {};
+  };
+
   const PrivateRoute = (props) => {
     if (user) {
       const key = props.location?.pathname.slice(1);
       const paths = {
         orders: (
           <Fragment>
-            <Header />
+            <Header getInView={getInView} />
             <Orders />
           </Fragment>
         ),
         payment: (
           <Fragment>
-            <Header />
+            <Header getInView={getInView} />
             <Elements stripe={promise}>
               <Payment />
             </Elements>
@@ -59,7 +74,7 @@ function App() {
     <Router>
       <LastLocationProvider>
         <div className="app">
-          <ToastContainer className="toast__header" />
+          <ToastContainer style={setToastStyle()} />
           <Switch>
             <Route path="/login">
               <Login />
@@ -69,12 +84,12 @@ function App() {
             </Route>
             <PrivateRoute path="/orders" component={Orders} />
             <Route path="/checkout">
-              <Header />
+              <Header getInView={getInView} />
               <Checkout />
             </Route>
             <PrivateRoute path="/payment" component={Payment} />
             <Route exact path="/">
-              <Header />
+              <Header getInView={getInView} />
               <Home />
             </Route>
           </Switch>

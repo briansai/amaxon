@@ -118,6 +118,11 @@
   color: green;
 }
 
+.payment__processing {
+  width: 50%;
+  text-align: center;
+}
+
 .clipboard:hover {
   cursor: pointer;
 }

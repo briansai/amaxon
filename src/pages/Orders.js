@@ -20,15 +20,22 @@ function Orders() {
         .doc(user?.uid)
         .collection('orders')
         .orderBy('created', 'desc')
-        .onSnapshot((snapshot) => {
-          setOrders(
-            snapshot.docs.map((doc) => ({
-              id: doc.id,
-              data: doc.data(),
-            }))
-          );
-          setLoading(false);
-        });
+        .onSnapshot(
+          (snapshot) => {
+            setOrders(
+              snapshot.docs.map((doc) => ({
+                id: doc.id,
+                data: doc.data(),
+              }))
+            );
+            setLoading(false);
+          },
+          (error) => {
+            throw new Error(error);
+          }
+        );
+
+    return () => setOrders([]);
   }, [user]);
 
   return (

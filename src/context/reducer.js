@@ -7,6 +7,7 @@ export const initialState = {
   history: null,
   burgerOpen: false,
   settingsOpen: false,
+  headerInView: true,
 };
 
 export const reducer = (state, action) => {
@@ -67,6 +68,12 @@ export const reducer = (state, action) => {
       return {
         ...state,
         settingsOpen: action.settingsOpen,
+      };
+
+    case 'SET_HEADER_VIEW':
+      return {
+        ...state,
+        headerInView: action.headerInView,
       };
 
     default:

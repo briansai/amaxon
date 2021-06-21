@@ -16,12 +16,22 @@
 
 .image__arrow-left {
   position: absolute;
-  top: 18%;
+  top: 15%;
   left: 5%;
 }
 
 .image__arrow-right {
   position: absolute;
-  top: 18%;
+  top: 15%;
   right: 5%;
+}
+
+@media only screen and (max-width: 576px) {
+  .image__arrow-left {
+    top: 18%;
+  }
+
+  .image__arrow-right {
+    top: 18%;
+  }
 }

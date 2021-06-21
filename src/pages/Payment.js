@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import CurrencyFormat from 'react-currency-format';
+import { CircularProgress } from '@material-ui/core';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import FileCopyIcon from '@material-ui/icons/FileCopy';
@@ -22,39 +23,31 @@ function Payment() {
     CVC: false,
     ZIP: false,
   });
-  const [clientSecret, setClientSecret] = useState(true);
   const [{ cart, user }, dispatch] = useStateValue();
   const history = useHistory();
   const stripe = useStripe();
   const elements = useElements();
 
-  useEffect(() => {
-    const getClientSecret = async () => {
-      const response = await buildClient({
-        method: 'post',
-        url: `/payment/create?total=${getCartTotal(cart) * 100}`,
-      });
-
-      setClientSecret(response.data.clientSecret);
-    };
-
-    cart.length && getClientSecret();
-  }, [cart]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setProcessing(true);
 
+    const response = await buildClient({
+      method: 'post',
+      url: `/payment/create?total=${getCartTotal(cart) * 100}`,
+    });
+
     !user
       ? history.push('/login')
       : stripe
-          .confirmCardPayment(clientSecret, {
+          .confirmCardPayment(response.data.clientSecret, {
             payment_method: {
               card: elements.getElement(CardElement),
             },
           })
           .then((confirmation) => {
             const { id, amount, created } = confirmation?.paymentIntent;
+
             db.collection('users')
               .doc(user?.uid)
               .collection('orders')
@@ -74,8 +67,9 @@ function Payment() {
 
             history.replace('/orders');
           })
-          .catch(() => {
+          .catch((err) => {
             setProcessing(false);
+            throw new Error(err.message);
           });
   };
 
@@ -172,7 +166,10 @@ function Payment() {
                 <CheckoutProduct key={`${item.id}-${index}`} item={item} />
               ))}
             </div>
-            <form className="payment__form" onSubmit={handleSubmit}>
+            <form
+              className="payment__form"
+              // onSubmit={handleSubmit}
+            >
               <CurrencyFormat
                 renderText={(value) => <h3>Order Total: {value} </h3>}
                 decimalScale={2}
@@ -182,12 +179,19 @@ function Payment() {
                 prefix={'$'}
                 className="payment__total"
               />
-              <button
-                disabled={!cart.length || processing}
-                className={!cart.length || processing ? 'disabled' : null}
-              >
-                {processing ? 'Payment Processing' : 'Place Your Order'}
-              </button>
+              {processing ? (
+                <div className="payment__processing">
+                  <CircularProgress />
+                </div>
+              ) : (
+                <button
+                  disabled={!cart.length}
+                  className={!cart.length ? 'disabled' : null}
+                  onClick={handleSubmit}
+                >
+                  {'Place Your Order'}
+                </button>
+              )}
             </form>
           </div>
         </div>
