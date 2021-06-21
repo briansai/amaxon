@@ -10,7 +10,7 @@ import HeaderDropdown from './HeaderDropdown';
 import { handleAuthentication, getFirstName } from '../utils/functions';
 import './Header.css';
 
-function Header({ getInView }) {
+function Header() {
   const [{ cart, user, burgerOpen, settingsOpen }, dispatch] = useStateValue();
   const [dropdown, setDropdown] = useState(false);
   const settingsRef = useRef();
@@ -30,7 +30,12 @@ function Header({ getInView }) {
         />
       </Link>
       <div className="header__search">
-        <input className="header__search-input" type="text" />
+        <input
+          className="header__search-input"
+          type="text"
+          placeholder="Search functionality is not part of this project's scope and is disabled."
+          disabled
+        />
         <SearchIcon className="header__search-icon" />
       </div>
       <div className="header__nav">

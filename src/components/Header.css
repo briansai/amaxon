@@ -20,7 +20,8 @@
   display: flex;
   flex: 1;
   align-items: center;
-  border-radius: 24px;
+  border-top-left-radius: 24px;
+  border-bottom-left-radius: 24px;
 }
 
 .header__search-input {
@@ -28,6 +29,7 @@
   padding: 10px;
   border: none;
   width: 100%;
+  background-color: white;
 }
 
 .header__search-icon {
@@ -82,6 +84,10 @@
 
   .header__option-cart {
     padding-left: 20px;
+  }
+
+  .header__search {
+    visibility: hidden;
   }
 
   .header__menu {
