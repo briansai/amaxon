@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Sling as Hamburger } from 'hamburger-react';
-import { useInView } from 'react-intersection-observer';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import useClickOutside from 'use-click-outside';
@@ -14,19 +13,15 @@ import './Header.css';
 function Header({ getInView }) {
   const [{ cart, user, burgerOpen, settingsOpen }, dispatch] = useStateValue();
   const [dropdown, setDropdown] = useState(false);
-  const { ref, inView, entry } = useInView({});
   const settingsRef = useRef();
   const exitClick = () => {
     dropdown && setDropdown(false);
   };
 
-  useEffect(() => {
-    getInView(inView);
-  }, [inView]);
   useClickOutside(settingsRef, exitClick);
 
   return (
-    <div className="header" ref={ref}>
+    <div className="header">
       <Link to="/">
         <img
           className="header__logo"
