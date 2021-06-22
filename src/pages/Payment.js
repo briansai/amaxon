@@ -69,7 +69,7 @@ function Payment() {
           })
           .catch((err) => {
             setProcessing(false);
-            throw new Error(err.message);
+            console.log(err.message);
           });
   };
 
@@ -166,10 +166,7 @@ function Payment() {
                 <CheckoutProduct key={`${item.id}-${index}`} item={item} />
               ))}
             </div>
-            <form
-              className="payment__form"
-              // onSubmit={handleSubmit}
-            >
+            <form className="payment__form" onSubmit={handleSubmit}>
               <CurrencyFormat
                 renderText={(value) => <h3>Order Total: {value} </h3>}
                 decimalScale={2}
@@ -187,7 +184,7 @@ function Payment() {
                 <button
                   disabled={!cart.length}
                   className={!cart.length ? 'disabled' : null}
-                  onClick={handleSubmit}
+                  // onClick={handleSubmit}
                 >
                   {'Place Your Order'}
                 </button>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Sling as Hamburger } from 'hamburger-react';
 import SearchIcon from '@material-ui/icons/Search';
@@ -10,22 +10,22 @@ import HeaderDropdown from './HeaderDropdown';
 import { handleAuthentication, getFirstName } from '../utils/functions';
 import './Header.css';
 
-function Header() {
+// eslint-disable-next-line
+const Header = forwardRef(({}, ref) => {
   const [{ cart, user, burgerOpen, settingsOpen }, dispatch] = useStateValue();
   const [dropdown, setDropdown] = useState(false);
   const settingsRef = useRef();
   const exitClick = () => {
     dropdown && setDropdown(false);
   };
-
   useClickOutside(settingsRef, exitClick);
 
   return (
-    <div className="header">
+    <div className="header" ref={ref}>
       <Link to="/">
         <img
           className="header__logo"
-          src="http://pngimg.com/uploads/amazon/amazon_PNG11.png"
+          src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
           alt=""
         />
       </Link>
@@ -94,6 +94,6 @@ function Header() {
       </div>
     </div>
   );
-}
+});
 
 export default Header;

@@ -1,4 +1,4 @@
-import { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -14,20 +14,21 @@ import Payment from './pages/Payment';
 import Orders from './pages/Orders';
 import { useStateValue } from './context/StateProvider';
 import './App.css';
-
+import { useInView } from 'react-intersection-observer';
 const promise = loadStripe(
   'pk_test_51HK9XLAuR811nlCyvEmZhSEIZHFdNeAk6XMcbcJTGHmLANUaKDiyQKvMJA4ARFmtOIoA3dMlIDWTymMqUQHJfJbM00nzbJ7xdP'
 );
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
-
   useEffect(() => {
     !user &&
       auth.onAuthStateChanged((authUser) => {
         dispatch({ type: 'SET_USER', user: authUser || null });
       });
   }, [user, dispatch]);
+
+  const [ref, inView] = useInView({});
 
   const PrivateRoute = (props) => {
     if (user) {
@@ -59,7 +60,13 @@ function App() {
     <Router>
       <LastLocationProvider>
         <div className="app">
-          <ToastContainer className="toast__header" />
+          <ToastContainer
+            style={{
+              right: 0,
+              transition: '0.3s ease-in-out',
+              top: inView ? '55px' : 0,
+            }}
+          />
           <Switch>
             <Route path="/login">
               <Login />
@@ -67,14 +74,14 @@ function App() {
             <Route path="/register">
               <Register />
             </Route>
-            <PrivateRoute path="/orders" component={Orders} />
             <Route path="/checkout">
-              <Header />
+              <Header ref={ref} />
               <Checkout />
             </Route>
-            <PrivateRoute path="/payment" component={Payment} />
+            <PrivateRoute path="/orders" />
+            <PrivateRoute path="/payment" />
             <Route exact path="/">
-              <Header />
+              <Header ref={ref} />
               <Home />
             </Route>
           </Switch>
