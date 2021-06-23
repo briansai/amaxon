@@ -65,5 +65,10 @@
 @media only screen and (max-width: 576px) {
   .subtotal {
     width: auto;
+    align-items: center;
+  }
+
+  .subtotal > button {
+    width: 60%;
   }
 }

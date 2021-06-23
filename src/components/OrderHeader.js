@@ -11,7 +11,7 @@ function OrderHeader({ id, data }) {
         <div className="order-header__date">
           <div className="order-header__text">Order Placed</div>
           <p className="order-header__content">
-            {moment.unix(created).format('MMMM Do YYYY')}
+            {moment.unix(created).format('MMMM D, YYYY')}
           </p>
         </div>
         <div className="order-header__total">

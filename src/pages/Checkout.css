@@ -1,8 +1,15 @@
 .checkout {
   display: flex;
-  padding: 20px;
   background-color: white;
   height: max-content;
+  position: absolute;
+  top: 60px;
+  min-width: 320px;
+}
+
+.checkout > div {
+  margin: 20px;
+  min-width: 320px;
 }
 
 .checkout__ad {
@@ -20,6 +27,7 @@
   position: -webkit-sticky;
   position: sticky;
   top: 10%;
+  right: 40px;
   align-self: flex-start;
 }
 

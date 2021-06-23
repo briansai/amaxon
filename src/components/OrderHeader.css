@@ -27,6 +27,7 @@
 
 .order-header__content {
   font-size: 14px;
+  text-transform: none;
 }
 
 @media only screen and (max-width: 768px) {

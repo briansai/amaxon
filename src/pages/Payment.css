@@ -1,5 +1,8 @@
 .payment {
   background-color: #ffffff;
+  position: absolute;
+  top: 60px;
+  width: 100%;
 }
 
 .payment__container {

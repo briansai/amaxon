@@ -1,18 +1,23 @@
 .orders {
-  margin: 0 auto;
   max-width: 920px;
   height: 80vh;
   width: 90%;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
 }
 
 .orders__container {
-  min-width: 320px;
+  min-width: 280px;
 }
 
 .orders__title {
   font-size: 28px;
   font-weight: 500;
-  margin: 40px auto;
+  margin: 20px auto 40px auto;
   width: 90%;
 }
 
