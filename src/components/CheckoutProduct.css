@@ -7,7 +7,7 @@
   padding-left: 20px;
 }
 
-.checkout-product__info > button {
+.checkout-product__info > .checkout-product__remove {
   margin-top: 10px;
 
   background: linear-gradient(rgb(254, 230, 176), rgb(238, 186, 55))
@@ -18,13 +18,27 @@
   color: #111;
 }
 
-.checkout-product__info > button:hover {
+.checkout-product__info > .checkout-product__remove:hover {
   background: rgb(238, 186, 55);
 }
 
-.checkout-product__info > button:active {
+.checkout-product__info > .checkout-product__remove:active {
   border-color: #a88734 #9c7e31 #846a29;
   box-shadow: 0 1px 1px black;
+}
+
+.checkout-product__info > .checkout-product__disabled {
+  margin-top: 10px;
+  padding: 5px 20px;
+  border-radius: 0.2rem;
+  background: lightgray;
+  border-color: lightgray;
+  color: gray;
+}
+
+.checkout-product__info > .checkout-product__disabled:hover {
+  cursor: default;
+  background: lightgray;
 }
 
 .checkout-product__image {

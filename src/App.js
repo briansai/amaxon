@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { LastLocationProvider } from 'react-router-last-location';
@@ -21,6 +21,7 @@ const promise = loadStripe(
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
+  const [ref, inView] = useInView({});
   useEffect(() => {
     !user &&
       auth.onAuthStateChanged((authUser) => {
@@ -28,32 +29,35 @@ function App() {
       });
   }, [user, dispatch]);
 
-  const [ref, inView] = useInView({});
-
   const PrivateRoute = (props) => {
+    const { location } = props;
     if (user) {
       const key = props.location?.pathname.slice(1);
       const paths = {
         orders: (
-          <Fragment>
+          <Route>
             <Header />
             <Orders />
-          </Fragment>
+          </Route>
         ),
         payment: (
-          <Fragment>
+          <Route>
             <Header />
             <Elements stripe={promise}>
               <Payment />
             </Elements>
-          </Fragment>
+          </Route>
         ),
       };
 
       return paths[key];
     }
 
-    return <Login {...props} />;
+    return (
+      <Route>
+        <Login location={location.pathname} />
+      </Route>
+    );
   };
 
   return (

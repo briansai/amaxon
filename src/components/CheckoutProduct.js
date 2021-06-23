@@ -16,7 +16,7 @@ const Toast = ({ item, type }) => {
   );
 };
 
-function CheckoutProduct({ item, hideButton }) {
+function CheckoutProduct({ item, hideButton, processing }) {
   const [{ toastNotify }, dispatch] = useStateValue();
   const { id, title, price, rating, image } = item;
 
@@ -57,7 +57,17 @@ function CheckoutProduct({ item, hideButton }) {
         </p>
         <div className="checkout-product__rating">{displayStars(rating)}</div>
         {!hideButton && (
-          <button onClick={(e) => removeItem(e)}>Remove from cart</button>
+          <button
+            onClick={(e) => removeItem(e)}
+            disabled={processing}
+            className={
+              processing
+                ? 'checkout-product__disabled'
+                : 'checkout-product__remove'
+            }
+          >
+            Remove from cart
+          </button>
         )}
       </div>
     </div>

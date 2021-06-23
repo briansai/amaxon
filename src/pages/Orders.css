@@ -5,6 +5,10 @@
   width: 90%;
 }
 
+.orders__container {
+  min-width: 320px;
+}
+
 .orders__title {
   font-size: 28px;
   font-weight: 500;

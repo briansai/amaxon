@@ -73,3 +73,10 @@ button {
 button:hover {
   color: #404040;
 }
+
+/* X-Small Screens */
+@media only screen and (max-width: 576px) {
+  .header-dropdown {
+    visibility: hidden;
+  }
+}

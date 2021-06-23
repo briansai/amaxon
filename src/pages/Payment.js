@@ -104,8 +104,8 @@ function Payment() {
           </div>
           <div className="payment__address">
             <p>{user?.displayName}</p>
-            <p>123 Potato Lane</p>
-            <p>Los Angeles, CA</p>
+            <p>123 Amaxon Lane</p>
+            <p>San Francisco, CA</p>
           </div>
         </div>
         <div className="payment__section">
@@ -163,7 +163,11 @@ function Payment() {
           <div className="payment__content">
             <div className="payment__items">
               {cart.map((item, index) => (
-                <CheckoutProduct key={`${item.id}-${index}`} item={item} />
+                <CheckoutProduct
+                  key={`${item.id}-${index}`}
+                  item={item}
+                  processing={processing}
+                />
               ))}
             </div>
             <form className="payment__form" onSubmit={handleSubmit}>
@@ -184,7 +188,6 @@ function Payment() {
                 <button
                   disabled={!cart.length}
                   className={!cart.length ? 'disabled' : null}
-                  // onClick={handleSubmit}
                 >
                   {'Place Your Order'}
                 </button>

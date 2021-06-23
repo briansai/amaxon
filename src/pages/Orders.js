@@ -46,7 +46,7 @@ function Orders() {
           <CircularProgress size={80} />
         </div>
       ) : (
-        <div className="orders">
+        <div className="orders__container">
           {orders.length ? (
             orders.map((order, index) => (
               <Order order={order} key={`${order.id}-${index}`} />
