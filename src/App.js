@@ -14,14 +14,14 @@ import Payment from './pages/Payment';
 import Orders from './pages/Orders';
 import { useStateValue } from './context/StateProvider';
 import './App.css';
-
+import { useInView } from 'react-intersection-observer';
 const promise = loadStripe(
   'pk_test_51HK9XLAuR811nlCyvEmZhSEIZHFdNeAk6XMcbcJTGHmLANUaKDiyQKvMJA4ARFmtOIoA3dMlIDWTymMqUQHJfJbM00nzbJ7xdP'
 );
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
-
+  const [ref, inView] = useInView({});
   useEffect(() => {
     !user &&
       auth.onAuthStateChanged((authUser) => {
@@ -64,7 +64,13 @@ function App() {
     <Router>
       <LastLocationProvider>
         <div className="app">
-          <ToastContainer className="toast__container" />
+          <ToastContainer
+            style={{
+              right: 0,
+              transition: '0.3s ease-in-out',
+              top: inView ? '55px' : 0,
+            }}
+          />
           <Switch>
             <Route path="/login">
               <Login />
@@ -73,13 +79,13 @@ function App() {
               <Register />
             </Route>
             <Route path="/checkout">
-              <Header />
+              <Header ref={ref} />
               <Checkout />
             </Route>
             <PrivateRoute path="/orders" />
             <PrivateRoute path="/payment" />
             <Route exact path="/">
-              <Header />
+              <Header ref={ref} />
               <Home />
             </Route>
           </Switch>

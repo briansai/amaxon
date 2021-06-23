@@ -10,7 +10,8 @@ import HeaderDropdown from './HeaderDropdown';
 import { handleAuthentication, getFirstName } from '../utils/functions';
 import './Header.css';
 
-function Header() {
+// eslint-disable-next-line
+const Header = forwardRef(({}, ref) => {
   const [{ cart, user, burgerOpen, settingsOpen }, dispatch] = useStateValue();
   const [dropdown, setDropdown] = useState(false);
   const settingsRef = useRef();
@@ -20,7 +21,7 @@ function Header() {
   useClickOutside(settingsRef, exitClick);
 
   return (
-    <div className="header">
+    <div className="header" ref={ref}>
       <Link to="/">
         <img
           className="header__logo"
@@ -93,6 +94,6 @@ function Header() {
       </div>
     </div>
   );
-}
+});
 
 export default Header;
